@@ -11,6 +11,8 @@ import {
 } from "../helpers/validation.js";
 import { generateToken } from "../helpers/tokens.js";
 import { sendVerificationEmail } from "../helpers/mailer.js";
+import jwt from "jsonwebtoken";
+
 
 const router = express.Router();
 
@@ -79,12 +81,24 @@ router.post("/register", async (req, res) => {
     });
     await user.save(); 
     const emailVerificationToken = generateToken({id: user._id.toString()}, "30m")
-    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    const url = `${process.env.BASE_URL}/api/users/activate/${emailVerificationToken}`;
     sendVerificationEmail(user.email, user.first_name, url)    
     res.json(user); 
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
+  } 
 });
+router.post('/activate', async(req, res)=> {
+  const {token} = req.body;
+  const user = jwt.verify(token, process.env.JWT_SECRET);
+  const check = await User.findById(user.id);
+  if(check.verified == true){
+    return res.status(400).json({message: "this email is already activated"})
+  } else {
+    await User.findByIdAndUpdate(user.id, {verified: true});
+    return res.status(200).json({message: "Account has been activated successfully"})
+  }
+})
 
 export default router;
+ 
