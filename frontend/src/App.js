@@ -1,16 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// import logo from './logo.svg';
+import "./App.css";
+import Home from "./screen/Home";
+import { Routes, Route, Link } from "react-router-dom";
+
+import Container from "react-bootstrap/Container";
+import Login from "./screen/Login";
+
+// import { useContext, useEffect, useState } from "react";
+// import { Button, NavDropdown } from "react-bootstrap";
+// import axios from "axios";
 
 function App() {
-  const get = async() =>{
-    const res = await fetch('http://localhost:5000') 
-    console.log(res)
-  }
-  get()
   return (
-    <div className="App">
-   
-    </div>
+    <main>
+      <Container className="mt-4">
+        <Routes>
+          <Route path="/" element={<Home />} />;
+          <Route path="/login" element={<Login />} />;
+        </Routes>
+      </Container>
+    </main>
   );
 }
 
