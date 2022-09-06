@@ -1,7 +1,7 @@
 // import logo from './logo.svg';
 import "./App.css";
 import Home from "./screen/Home";
-import { Routes, Route, Link } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Login from "./screen/Login";
