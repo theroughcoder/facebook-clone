@@ -10,7 +10,7 @@
 }
 .logo span{
     display: block;
-    margin: 1.5ch 0;
+    margin: 3ch 0 1ch 0;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .login_wrapper {
@@ -42,15 +42,19 @@
     box-shadow: 0 1.4px var(--shadow-1);
     padding: 1rem;
     padding-bottom: 2rem;
-    width:330px;
+    max-width:330px;
     height: fit-content;
     margin: 1rem auto;
     border-radius: 10px;
     user-select: none;
 
 }
-.login_2_wrap button{
+.login_form{
     width: 100%;
+}
+
+.login_2_wrap button{
+    width:  100%;
     height:50px;
     font-size: 17px;
     font-weight: 700;
@@ -69,7 +73,7 @@
     height: 1px;
     background: var(--bg-third);
 }
-.open_signup{
+.open_signup{ 
     background-color: var(--green-color);
     width: 70% !important;
     font-weight: 600 !important;
@@ -78,4 +82,24 @@
 .sign_extra{
     font-size: 15px;
     text-decoration: none;
+}
+.input_wrap{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 1px solid; */
+}
+.input_wrap input {
+    
+    width: 93%;
+    outline: none;
+    border: 1px solid var(--bg-third);
+    background-color: var(--bg-primary);
+    color: var(--color-primary);
+    height: 50px;
+    font-size: 17px;
+    border-radius: 10px;
+    padding-left: 20px;
+    margin-bottom: 10px;
 }

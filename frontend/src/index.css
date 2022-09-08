@@ -45,15 +45,11 @@ code {
 .blue_btn {
   border: none;
   outline: none;
-  padding: 0.5px 12px;
   border-radius: 7px;
   font-size: inherit;
   font-weight: 600;
   font-size: 14px;
   color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items:center;
   gap: 6px;
   cursor: pointer;
   background-color: var(--blue-color);
