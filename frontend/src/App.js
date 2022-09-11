@@ -20,7 +20,7 @@ function App() {
         </Routes>
       </Container>
     </main>
-  );
+  ); 
 }
 
 export default App;

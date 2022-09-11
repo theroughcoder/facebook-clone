@@ -1,0 +1,8 @@
+.error_icon {
+    background-image: url(../../public/icons/error.svg);
+    background-size: auto;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+} 

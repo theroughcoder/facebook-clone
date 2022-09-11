@@ -3,14 +3,14 @@
     width: 240px;
     color: var(--blue-color);
     font-size: 4ch;
-    font-weight: 600;
+    font-weight: 800;
     /* margin-top: 2ch; */
     border: 1px solid rgba(23, 22, 22, 0) ;
     margin: auto;
 }
 .logo span{
     display: block;
-    margin: 3ch 0 1ch 0;
+    margin: 2ch 0ch .5ch 0ch;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 .login_wrapper {
@@ -19,17 +19,19 @@
 }
 .login_wrap {
     color: var(--color-primary);
-    height: 78vh;
+    min-height: 80vh;
 }
 .login_1 {
     width: 320px;
-    margin: auto
+    margin: auto;
+
 }
 .login_1 span{
     display: block;
     text-align: center;
 }
 .login_2 {
+
     text-align: center;
     
 }
@@ -42,6 +44,7 @@
     box-shadow: 0 1.4px var(--shadow-1);
     padding: 1rem;
     padding-bottom: 2rem;
+    padding-top: 3rem;
     max-width:330px;
     height: fit-content;
     margin: 1rem auto;
@@ -58,6 +61,7 @@
     height:50px;
     font-size: 17px;
     font-weight: 700;
+    margin-top: 2rem;
 }
 .forgot_password{
     color: var(--blue-color);
@@ -77,29 +81,61 @@
     background-color: var(--green-color);
     width: 70% !important;
     font-weight: 600 !important;
-    margin-top: 1rem;
+    margin-top: 0rem !important;
 }
 .sign_extra{
     font-size: 15px;
     text-decoration: none;
 }
-.input_wrap{
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* border: 1px solid; */
+
+/* ***************footer**************** */
+.login_footer{
+    padding: 2ch;
 }
-.input_wrap input {
+.login_footer_wrap{
+    text-align: center;
+    margin: 1ch;
+}
+.login_footer_splitter{
+    width: 70%;
+    margin: 10px auto;
+    height: 1px;
+    background: var(--bg-third);
+
+}
+
+
+/* ***************footer**************** */
+
+/* ************Media queries********* */
+@media (min-width: 850px) {
+    .login_wrap{
+        display: flex;
+        align-items: center;
+        max-width: 1000px;
+        margin: 0 auto;
+        justify-content: space-around;
+
     
-    width: 93%;
-    outline: none;
-    border: 1px solid var(--bg-third);
-    background-color: var(--bg-primary);
-    color: var(--color-primary);
-    height: 50px;
-    font-size: 17px;
-    border-radius: 10px;
-    padding-left: 20px;
-    margin-bottom: 10px;
+    
+    }
+    .login_1{
+        margin: 0;
+        margin-bottom: 15vh;
+        width: 400px;
+        
+    }
+    .logo{
+        margin: 0;
+        font-size: 5ch;
+    }
+    .login_1 span{
+        text-align: left;
+    }
+    .login_2 {
+        width: 400px;
+    }
+
 }
+
+/* ************Media queries********* */
