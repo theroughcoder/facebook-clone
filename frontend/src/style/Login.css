@@ -1,6 +1,6 @@
 .logo {
     
-    width: 240px;
+    /* width: 240px; */
     color: var(--blue-color);
     font-size: 4ch;
     font-weight: 800;
@@ -10,8 +10,10 @@
 }
 .logo span{
     display: block;
-    margin: 2ch 0ch .5ch 0ch;
+    margin: 2ch 0ch 0ch 0ch;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    
 }
 .login_wrapper {
     
@@ -19,21 +21,20 @@
 }
 .login_wrap {
     color: var(--color-primary);
-    min-height: 80vh;
+    min-height: 90vh;
 }
 .login_1 {
     width: 320px;
     margin: auto;
 
 }
-.login_1 span{
-    display: block;
+.login_1 p{
     text-align: center;
+    font-weight: 500;
 }
 .login_2 {
-
     text-align: center;
-    
+
 }
 .login_2_wrap{
     display: flex;
@@ -42,9 +43,7 @@
     gap: 1rem;
     background-color: var(--bg-primary);
     box-shadow: 0 1.4px var(--shadow-1);
-    padding: 1rem;
-    padding-bottom: 2rem;
-    padding-top: 3rem;
+    padding: 2rem 1rem;
     max-width:330px;
     height: fit-content;
     margin: 1rem auto;
@@ -61,7 +60,7 @@
     height:50px;
     font-size: 17px;
     font-weight: 700;
-    margin-top: 2rem;
+    /* margin-top: 2rem; */
 }
 .forgot_password{
     color: var(--blue-color);
@@ -94,15 +93,8 @@
 }
 .login_footer_wrap{
     text-align: center;
-    margin: 1ch;
 }
-.login_footer_splitter{
-    width: 70%;
-    margin: 10px auto;
-    height: 1px;
-    background: var(--bg-third);
 
-}
 
 
 /* ***************footer**************** */
@@ -114,7 +106,7 @@
         align-items: center;
         max-width: 1000px;
         margin: 0 auto;
-        justify-content: space-around;
+        justify-content:space-between;
 
     
     
@@ -122,18 +114,29 @@
     .login_1{
         margin: 0;
         margin-bottom: 15vh;
-        width: 400px;
+        width: 500px;
         
     }
     .logo{
         margin: 0;
-        font-size: 5ch;
+        font-size: 6ch; 
     }
-    .login_1 span{
+    .logo span {
+        
         text-align: left;
     }
-    .login_2 {
-        width: 400px;
+
+    .login_1 p{
+        text-align: left;
+        font-size: 28px;
+        font-weight: 500;
+    margin-top: 0;
+
+    }
+    .login_2_wrap{
+        max-width:400px;
+        width:360px;
+
     }
 
 }
