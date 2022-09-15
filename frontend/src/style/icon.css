@@ -1,8 +1,27 @@
 .error_icon {
     background-image: url(../../public/icons/error.svg);
-    background-size: auto;
+    background-size: cover;
     background-repeat: no-repeat;
     display: inline-block;
     height: 45px;
     width: 45px;
+
+} 
+.exit_icon {
+    background-image: url(../../public/icons/exit_icon.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+
+} 
+.info_icon {
+    background-image: url(../../public/icons/info_icon.svg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 13px;
+    width: 13px;
+
 } 

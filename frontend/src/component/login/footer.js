@@ -7,7 +7,6 @@ export default function Footer() {
           <span>Copyright © 2022 web-eau.net. All Rights Reserved. - Legal notice</span>
         </div>
        
-
       </footer>
   )
 }

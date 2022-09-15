@@ -53,8 +53,13 @@ code {
   gap: 6px;
   cursor: pointer;
   background-color: var(--blue-color);
+  height:50px;
+
 }
 /* Button */
+
+/* Input  */
+
 .input_error_border{
   border-color: #e51c19 !important;
 }
@@ -72,7 +77,7 @@ code {
   font-size: 17px;
   border-radius: 10px;
   padding-left: 20px;
-  margin-bottom:25px;
+  margin-bottom:20px;
   box-sizing: border-box;
 }
 .input_wrap input:focus{
@@ -96,3 +101,5 @@ code {
   left: 15px;
   height: 3ch;
 }
+/* Input  */
+

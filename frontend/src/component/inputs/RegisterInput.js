@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react'
 import { ErrorMessage, useField } from "formik";
 
-export default function LoginInput({ placeholder, ...props }) {
-  const [field, meta] = useField(props);
+export default function RegisterInput({ placeholder, ...props }) {
+    const [field, meta] = useField(props);
   return (
     <div className="input_wrap">
      
@@ -23,5 +23,5 @@ export default function LoginInput({ placeholder, ...props }) {
 
       {meta.touched && meta.error && <i className="error_icon" />}
     </div>
-  );
+  )
 }
