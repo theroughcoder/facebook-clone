@@ -1,10 +1,11 @@
-import { Form, Formik } from 'formik'
-import React from 'react';
+import { Field, Form, Formik } from 'formik'
 import * as Yup from "yup";
 import RegisterInput from '../inputs/RegisterInput';
 
 
 export default function RegisterForm() {
+
+
     const loginValidation = Yup.object({
         email: Yup.string()
             .required("Email address is required")
@@ -12,6 +13,11 @@ export default function RegisterForm() {
             .max(100),
         password: Yup.string().required("Password is required"),
     });
+
+    const years = Array.from(new Array(108), (val, index) => new Date().getFullYear() - index)
+    const months = Array.from(new Array(12), (val, index) => 1 + index);
+
+
     return (
         <div>
             <div className='blur'></div>
@@ -22,20 +28,21 @@ export default function RegisterForm() {
                     <span>It's quick and easy</span>
                 </div>
                 <Formik
-                    enableReinitialize
+                  
                     initialValues={{
                         first_name: "",
                         last_name: "",
                         email: "",
                         password: "",
-                        bYear: "",
-                        bMonth: "",
-                        bDay: "",
+                        bYear: new Date().getFullYear(),
+                        bMonth: "1",
+                        bDay: "1",
                         gender: ""
                     }}
                     validationSchema={loginValidation}
                     onSubmit={values => {
                         console.log(values)
+
                     }}
                 >{(formik) => (
 
@@ -73,55 +80,55 @@ export default function RegisterForm() {
                                 Date of birth <i className='info_icon'></i>
                             </div>
                             <div className='reg_grid'>
-                                <select name="bDay">
-                                    <option>15</option>
-                                </select>
-                                <select name="bMonth">
-                                    <option>15</option>
-                                </select>
-                                <select name="bYear">
-                                    <option>15</option>
-                                </select>
+                                <Field as="select" name="bDay" >
+                                    {Array.from(new Array(new Date(formik.values.bYear, formik.values.bMonth, 0).getDate()), (val, index) => 1 + index).map((day, index) => <option key={index} value={day} >{day}</option>)}
+                                </Field>
+                                <Field as="select" name="bMonth" >
+                                    {months.map((month, index) => <option key={index} value={month} >{month}</option>)}
+                                </Field>
+                                <Field as="select" name="bYear" >
+                                    {years.map((year, index) => <option key={index} value={year} >{year}</option>)}
+                                </Field>
                             </div>
                             <div className='reg_line_header'>
                                 Gender <i className='info_icon'></i>
                             </div>
                             <div className='reg_grid'>
-                                <label htmlFor="male">
+                            <label id="male">
+                                    <Field
+                                          type="radio"
+                                          name="gender"
+                                          id="male"
+                                          value="male"
+                                    />
                                     Male
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        id="male"
-                                        value="male"
-                                    />
                                 </label>
-                                <label htmlFor="female">
+                                <label id="female">
+                                    <Field
+                                          type="radio"
+                                          name="gender"
+                                          id="female"
+                                          value="female"
+                                    />
                                     Female
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        id="female"
-                                        value="female"
-                                    />
                                 </label>
-                                <label htmlFor="custom">
-                                    Custom
-                                    <input
-                                        type="radio"
-                                        name="gender"
-                                        id="custom"
-                                        value="custom"
+                                <label id="custom">
+                                    <Field
+                                          type="radio"
+                                          name="gender"
+                                          id="custom"
+                                          value="custom"
                                     />
+                                    Custom
                                 </label>
                             </div>
 
                         </div>
                         <div className='reg_info'>
-                        By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy. You may receive SMS notifications from us and can opt out at any time.
+                            By clicking Sign Up, you agree to our Terms, Privacy Policy and Cookies Policy. You may receive SMS notifications from us and can opt out at any time.
                         </div>
                         <div className='reg_btn_wrapper'>
-                            <button className='blue_btn open_signup'>Sign Up</button>
+                            <button type='submit' className='blue_btn open_signup'>Sign Up</button>
                         </div>
 
 

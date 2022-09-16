@@ -73,7 +73,7 @@ code {
   border: 1px solid var(--bg-third);
   background-color: var(--bg-primary);
   color: var(--color-primary);
-  height: 50px;
+  height: 55px;
   font-size: 17px;
   border-radius: 10px;
   padding-left: 20px;
@@ -97,7 +97,7 @@ code {
   color: #e51c19;
   position: absolute;
   background-color: var(--bg-primary);
-  bottom: 12px;
+  bottom: 10px;
   left: 15px;
   height: 3ch;
 }
