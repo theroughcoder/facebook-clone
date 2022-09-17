@@ -1,17 +1,31 @@
 import { Field, Form, Formik } from 'formik'
+import { useState } from 'react';
 import * as Yup from "yup";
 import RegisterInput from '../inputs/RegisterInput';
 
 
 export default function RegisterForm() {
-
+    const [showPassword, setShowPassword] = useState(false);
 
     const loginValidation = Yup.object({
+        first_name: Yup.string()
+            .required("First name is required")
+            .min(2, "Must contain atleast 2 characters.")
+            .max(16, "Must contain atmost 16 characters. ")
+            .matches(/^[aA-zZ]+$/, "Numbers and special characters are not allowed."),
+        last_name: Yup.string()
+            .required("Last name is required")
+            .min(2, "Must contain atleast 2 characters.")
+            .max(16, "Must contain atmost 16 characters. ")
+            .matches(/^[aA-zZ]+$/, "Numbers and special characters are not allowed."),
         email: Yup.string()
             .required("Email address is required")
             .email("This is not a valid email address")
             .max(100),
-        password: Yup.string().required("Password is required"),
+        password: Yup.string()
+            .required("Password is required")
+            .min(6, "Password should contain atleast 6 characters.")
+            .max(20, "Password should contain atmost 20 characters."),
     });
 
     const years = Array.from(new Array(108), (val, index) => new Date().getFullYear() - index)
@@ -28,7 +42,7 @@ export default function RegisterForm() {
                     <span>It's quick and easy</span>
                 </div>
                 <Formik
-                  
+
                     initialValues={{
                         first_name: "",
                         last_name: "",
@@ -47,6 +61,8 @@ export default function RegisterForm() {
                 >{(formik) => (
 
                     <Form className='register_form'>
+
+
                         <div className='reg_line'>
                             <RegisterInput
                                 type="text"
@@ -61,6 +77,7 @@ export default function RegisterForm() {
                                 name="last_name"
                             />
                         </div>
+
                         <div className='reg_line'>
                             <RegisterInput
                                 type="text"
@@ -94,30 +111,30 @@ export default function RegisterForm() {
                                 Gender <i className='info_icon'></i>
                             </div>
                             <div className='reg_grid'>
-                            <label id="male">
+                                <label id="male">
                                     <Field
-                                          type="radio"
-                                          name="gender"
-                                          id="male"
-                                          value="male"
+                                        type="radio"
+                                        name="gender"
+                                        id="male"
+                                        value="male"
                                     />
                                     Male
                                 </label>
                                 <label id="female">
                                     <Field
-                                          type="radio"
-                                          name="gender"
-                                          id="female"
-                                          value="female"
+                                        type="radio"
+                                        name="gender"
+                                        id="female"
+                                        value="female"
                                     />
                                     Female
                                 </label>
                                 <label id="custom">
                                     <Field
-                                          type="radio"
-                                          name="gender"
-                                          id="custom"
-                                          value="custom"
+                                        type="radio"
+                                        name="gender"
+                                        id="custom"
+                                        value="custom"
                                     />
                                     Custom
                                 </label>

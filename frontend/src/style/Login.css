@@ -148,6 +148,7 @@
     display: flex;
     flex-direction: column;
 }
+
 .reg_col {
     position: relative;
     align-self: flex-start;
@@ -262,6 +263,19 @@ margin: 20px 0 10px 0;
         max-width:400px;
         width:360px;
     }
+
+    /* *****register******** */
+    .register{
+        width: 400px;
+    }
+    
+    .reg_fl_flex{
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    /* *****register******** */
+     
 
 }
 /* ************Media queries********* */
