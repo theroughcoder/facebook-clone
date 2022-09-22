@@ -1,9 +1,9 @@
 import { Field, Form, Formik } from 'formik'
-import { useReducer, useState } from 'react';
 import BeatLoader from "react-spinners/BeatLoader";
-import axios from "axios";
 import * as Yup from "yup";
 import RegisterInput from '../inputs/RegisterInput';
+import axios from "axios";
+import { useReducer, useState } from 'react';
 import { getError } from '../../utils';
 import { useDispatch } from 'react-redux';
 import Cookies from "js-cookie"
@@ -237,7 +237,7 @@ export default function RegisterForm({setVisible}) {
                             <div className='reg_btn_wrapper'>
                                 <button type='submit' className='blue_btn open_signup'>Sign Up</button>
                             </div>
-                            <div className='register_loading'>
+                            <div className='loading'>
 
                                 <BeatLoader
                                     color="#36d64b"
@@ -245,8 +245,8 @@ export default function RegisterForm({setVisible}) {
                                     margin={4}
                                     size={15}
                                 />
-                                {error && <div className='register_error_text'>{error}</div>}
-                                {user.message && <div className='register_success_text'>{user.message}</div>}
+                                {error && <div className='error_text'>{error}</div>}
+                                {user.message && <div className='success_text'>{user.message}</div>}
 
                             </div>
 

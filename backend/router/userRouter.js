@@ -113,7 +113,7 @@ router.post('/login', async(req, res)=> {
     const {email, password} = req.body;
     const user = await User.findOne({email: email});
     if(!user){
-      return res.status(400).json({message: "this email address you entered is not found"}) 
+      return res.status(400).json({message: "Email address you entered is not found"}) 
     }
     if(bcrypt.compareSync(password, user.password)) {
         return res.send({
@@ -124,7 +124,6 @@ router.post('/login', async(req, res)=> {
           last_name: user.last_name,
           token: generateToken({id: user._id.toString()}, "7d"),
           verified: user.verified,
-          message: "Register success! Please activate your email to start"
         });
     }else {
       return res.status(400).json({message: "Invalid credentials. Please try again."})
