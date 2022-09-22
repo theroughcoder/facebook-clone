@@ -14,19 +14,19 @@ import { sendVerificationEmail } from "../helpers/mailer.js";
 import jwt from "jsonwebtoken";
 
 
+
 const router = express.Router();
 
 router.get("/", (req, res) => {
   res.send("hello bol re la hai");
 });
-router.post("/register", async (req, res) => {
+router.post("/register", expressAsyncHandler(async (req, res, next) => {
   try {
     const {
       first_name,
       last_name,
       email,
       password,
-      username,
       bYear,
       bMonth,
       bDay,
@@ -38,10 +38,10 @@ router.post("/register", async (req, res) => {
     }
     const check = await User.findOne({ email });
     if (check) {
-      return res.status(400).json({
+      return res.status(401).send({
         message:
           "This email address already exists, try with a different email address",
-      });
+      }); 
     }
     if (!validateLength(first_name, 3, 30)) {
       return res
@@ -82,7 +82,7 @@ router.post("/register", async (req, res) => {
     await user.save(); 
     const emailVerificationToken = generateToken({id: user._id.toString()}, "30m")
     const url = `${process.env.BASE_URL}/api/users/activate/${emailVerificationToken}`;
-    sendVerificationEmail(user.email, user.first_name, url)    
+    // sendVerificationEmail(user.email, user.first_name, url)    
     res.send({
       id: user._id,
       username: user.username,
@@ -96,7 +96,7 @@ router.post("/register", async (req, res) => {
   } catch (error) {
     res.status(500).json({ message: error.message });
   } 
-});
+}));
 router.post('/activate', async(req, res)=> {
   const {token} = req.body;
   const user = jwt.verify(token, process.env.JWT_SECRET);

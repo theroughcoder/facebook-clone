@@ -5,7 +5,7 @@ import LoginInput from "../inputs/LoginInput";
 import * as Yup from "yup";
 
 
-export default function LoginForm() {
+export default function LoginForm({setVisible}) {
 
     const loginValidation = Yup.object({
         email: Yup.string()
@@ -62,10 +62,10 @@ export default function LoginForm() {
                 Forgotten password ?
               </Link>
               <div className="sign_splitter"></div>
-              <button className="blue_btn open_signup">Create Account</button>
+              <button onClick={()=>{setVisible(true)}} className="blue_btn open_signup">Create Account</button>
             </div>
             <Link className="sign_extra" to="/">
-              <b>Create a Page </b> for a celebrity, barnd or business.
+              <b>Create a Page </b> for a celebrity, brand or business.
             </Link>
           </div>
         </div>

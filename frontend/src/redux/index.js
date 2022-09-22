@@ -1,1 +1,1 @@
-export {buyPastry} from './user/userAction'
+export {userLogin} from './user/userAction'

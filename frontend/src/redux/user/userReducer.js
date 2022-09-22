@@ -1,13 +1,12 @@
-
+import Cookies from "js-cookie";
 const initialState = {
-    numOfPastries: 30
+     ...Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
 }
 
 export default function  userReducer  (state = initialState, action) {
     switch(action.type){
-        case "USER_LOGIN": return {
-            ...state, numOfPastries : state.numOfPastries -1
-        } 
+        case "USER_LOGIN": return  action.payload
+
         default: return state
     }
 }
