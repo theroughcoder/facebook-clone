@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 const initialState = {
-    userInfo: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
+  ...Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
 }
 
 export default function  userReducer  (state = initialState, action) {
