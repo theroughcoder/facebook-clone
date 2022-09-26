@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { Link } from 'react-router-dom';
 import '../../style/Header.css'
 import {Friends, Gaming, HomeActive, Logo, Market, Menu, Search, Watch, Messenger, Notifications, ArrowDown} from "../../svg";
 import {useSelector} from 'react-redux';
 import SearchMenu from './SearchMenu';
+import AllMenu from './AllMenu';
+import useClickOutSide from '../../helpers/clickOutSide';
+
 export default function Header() {
     const color = "#65676b"
     const userInfo = useSelector((state)=>  state.user )
     const [showSearchMenu, setShowSearchMenu] = useState(false);
+    const [showAllMenu, setShowAllMenu] = useState(false);
+
+    const allMenu = useRef(null)
+    useClickOutSide(allMenu, ()=>{
+        setShowAllMenu(false)
+        
+    })
   return (
     
     <header>
@@ -50,9 +60,18 @@ export default function Header() {
                 <img src={userInfo && userInfo.picture} alt=""/>
                 <span>{userInfo && userInfo.first_name}</span>
             </Link>
-            <div className='circle_icon hover1'>
-                <Menu/>
-            </div>
+           
+            <div className="circle_icon hover1" ref={allMenu} >
+          <div
+            onClick={() => {
+              setShowAllMenu((prev) => !prev);
+            }}
+          >
+            <Menu />
+          </div>
+
+          {showAllMenu && <AllMenu setShowAllMenu={setShowAllMenu}/>}
+        </div>
             <div className='circle_icon hover1'>
                 <Messenger/>
             </div>
