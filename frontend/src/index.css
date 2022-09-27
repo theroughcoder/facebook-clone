@@ -151,6 +151,10 @@ code {
   .hover2:hover{
   background-color: var(--bg-third);
   }
+  .hover3:hover {
+    background: #d4d6da3a;
+  }
+  
   /* ***hover*** */
 
   .card{
@@ -168,3 +172,17 @@ code {
   border-radius: 5px;
 }
 /*----Scrollbar----*/
+/*---Circles------*/
+.small_circle {
+  position: relative;
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 11px;
+  background: var(--bg-third);
+  cursor: pointer;
+}
+/*---Circles------*/
