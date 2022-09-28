@@ -2,17 +2,22 @@ import { menu, create } from "../../data/allMenu";
 import { Return } from "../../svg";
 
 import AllMenuItem from "./AllMenuItem";
-export default function AllMenu({setShowAllMenu}) {
-    const color = "#65676b"
- 
+export default function AllMenu({ setShowAllMenu }) {
+  const color = "#65676b";
+
   return (
-    <div className="all_menu" >
-        <div className='circle hover2' onClick={() => { setShowAllMenu(false) }}>
-                        <Return color={color} />
-        </div>
+    <div className="all_menu">
+      <div
+        className="circle hover2"
+        onClick={() => {
+          setShowAllMenu(false);
+        }}
+      >
+        <Return color={color} />
+      </div>
       <div className="all_menu_header">Menu</div>
-      <div className="all_menu_wrap scrollbar">
-        <div className="all_left">
+      <div className="all_menu_wrap ">
+        <div className="all_left scrollbar">
           <div className="all_menu_search">
             <i className="amm_s_ic"></i>
             <input type="text" placeholder="Search Menu" />
@@ -94,24 +99,14 @@ export default function AllMenu({setShowAllMenu}) {
               />
             ))}
           </div>
-          <div className="all_right">
+        </div>
+
+        <div className="all_right scrollbar">
           <div className="all_right_header">Create</div>
           {create.map((item, i) => (
             <div key={i} className="all_right_item hover1">
               <div className="all_right_circle">
                 <i className={item.icon}></i>
-              </div>
-              {item.name}
-            </div>
-          ))}
-        </div>
-        </div>
-        <div className="all_right">
-          <div className="all_right_header">Create</div>
-          {create.map((item, i) => (
-            <div key={i} className="all_right_item hover1">
-              <div className="all_right_circle">
-                <i className={item.icon} ></i>
               </div>
               {item.name}
             </div>
