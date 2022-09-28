@@ -110,7 +110,7 @@ header{
 .header_right{
     display: flex;
     flex-direction: row;
-    justify-content: end;
+    justify-content: flex-end;
     gap: 5px;
     
     /* position: absolute; */
@@ -590,3 +590,12 @@ header{
   }
 }
 /*---responsive----------*/
+
+/* ******Active Header******* */
+.active_header{
+  background: var(--light-blue-color);
+}
+.active_header svg{
+  fill: var(--blue-color);
+}
+/* ******Active Header******* */ 

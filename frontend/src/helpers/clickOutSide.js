@@ -17,6 +17,6 @@ export default function useClickOutSide(ref, fun) {
             document.removeEventListener('mousedown', listener);
             document.removeEventListener('touchstart', listener);
         }
-    }, [ref]);
+    }, [ref, fun]);
    
 } 

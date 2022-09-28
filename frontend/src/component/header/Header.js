@@ -79,7 +79,7 @@ export default function Header() {
           <span>{userInfo && userInfo.first_name}</span>
         </Link>
 
-        <div className="circle_icon hover1" ref={allMenu}>
+        <div className={`circle_icon hover1 ${showAllMenu && "active_header"}`} ref={allMenu}>
           <div
             onClick={() => {
               setShowAllMenu((prev) => !prev);
@@ -97,7 +97,7 @@ export default function Header() {
           <Notifications />
           <div className="right_notification">5</div>
         </div>
-        <div ref={usermenu} className="circle_icon hover1">
+        <div ref={usermenu} className={`circle_icon hover1 ${showUserMenu && "active_header"}`}>
           <div
             onClick={() => {
               setShowUserMenu((prev) => !prev);
