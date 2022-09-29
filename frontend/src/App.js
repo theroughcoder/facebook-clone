@@ -5,6 +5,8 @@ import { Routes, Route } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Login from "./screen/Login";
+import LoggedInRoutes from "./routes/LoggedInRoutes";
+import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 
 // import { useContext, useEffect, useState } from "react";
 // import { Button, NavDropdown } from "react-bootstrap";
@@ -15,8 +17,14 @@ function App() {
     <main>
       <Container className="mt-4">
         <Routes>
+          <Route element={<LoggedInRoutes/>}>
+
           <Route path="/" element={<Home />} />;
+          </Route>
+          <Route element={<NotLoggedInRoutes/>}>
+
           <Route path="/login" element={<Login />} />;
+          </Route>
         </Routes>
       </Container>
     </main>
