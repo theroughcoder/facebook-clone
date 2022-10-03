@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import { ArrowDown1 } from "../../../svg";
 import { useState } from "react";
 import Shortcut from "./Shortcut";
+import { useMediaQuery } from "react-responsive";
 export default function LeftHome({ user }) {
   const [visible, setVisible] = useState(false);
+  const query850px = useMediaQuery({
+    query: "(max-width: 850px)",
+  });
+
   return (
-    <div className="left_home scrollbar">
+    <div className={`left_home scrollbar ${query850px && `query850px` }`}>
       <Link to="/profile" className="left_link hover1">
         <img src={user?.picture} alt="" />
         <span>

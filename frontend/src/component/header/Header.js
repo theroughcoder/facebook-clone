@@ -93,7 +93,7 @@ export default function Header() {
         <div className="circle_icon hover1">
           <Messenger />
         </div>
-        <div className="circle_icon hover1">
+        <div className=" circle_icon hover1">
           <Notifications />
           <div className="right_notification">5</div>
         </div>
@@ -111,3 +111,4 @@ export default function Header() {
     </header>
   );
 }
+      

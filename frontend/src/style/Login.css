@@ -107,9 +107,9 @@
 .register {
   position: absolute;
   background: var(--bg-primary);
-  top: 50%;
+  top: 3%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform:translate(-50%);
   box-shadow: 0 1px 2px var(--shadow-1);
   border-radius: 10px;
   padding: 10px;

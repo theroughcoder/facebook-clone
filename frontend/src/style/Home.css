@@ -1,16 +1,22 @@
  
- /* ********Left Home********** */
+ /* *****************************************Left Home******************************* */
  .left_home {
   position: fixed;
   margin-top: 58px;
   left: 6px;
-  max-height: calc(100vh - 100px);
+  height: calc(100vh - 140px);
   width: 15vw;
   overflow-y: auto;
   color: var(--color-primary);
   padding: 15px 0;
   padding-bottom: 5rem;
   user-select: none;
+}
+.query850px{
+  margin-top: 106px;
+}
+.query850pxStories{
+  margin-top: 56px;
 }
 .left_link {
   display: flex;
@@ -107,11 +113,201 @@
   margin-bottom: 3px;
 }
 
- /* ********Left Home********** */
+/* ***********************************Left Home************************************ */
+
+/* ***********************************Middle Home*********************************** */
+.home {
+  min-height: 100vh;
+  background: var(--bg-secondary);
+  display: flex;
+  justify-content: center;
+  
+}
+.home_middle {
+  margin-top: 75px;
+  /* position: absolute; */
+  /* left: 50%; */
+  /* transform: translateX(-50%); */
+  /* background-color: aquamarine; */
+  
+}
 
 
 
- /* ********Right Home********** */
+
+/* ***********Stories*********** */
+.stories {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, 105px);
+  gap: 10px;
+  /* background-color: black; */
+  /* width: 100%; */
+  /* background-color: aquamarine; */
+  
+}
+.create_story_card {
+  position: relative;
+  height: 190px;
+  /* width: 100%; */
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 2px var(--shadow-1);
+}
+.create_story_img {
+  position: absolute;
+  height: 75%;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(80%);
+}
+.plus_story {
+  position: absolute;
+  left: 50%;
+  top: 65%;
+  transform: translateX(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue-color);
+  cursor: pointer;
+  border: 4px solid #fff;
+}
+.story_create_text {
+  color: #000;
+  position: absolute;
+  left: 20%;
+  top: 87%;
+  font-size: 12px;
+}
+.story {
+  cursor: pointer;
+  position: relative;
+  height: 190px;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 1px 2px var(--shadow-1);
+}
+.story_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 0.2s;
+}
+.story:hover .story_img {
+  transform: scale(1.1);
+}
+.story_profile_pic {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--blue-color);
+}
+.story_profile_pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.story_profile_name {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 10px;
+  word-break: break-word;
+  width: 100px;
+  color: #fff;
+  font-size: 14px;
+  padding-left: 10px;
+}
+.white_circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--bg-primary);
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: -5px;
+  box-shadow: 1px 2px var(--shadow-1);
+  cursor: pointer;
+}
+
+/* ***********Stories*********** */
+
+/* *************create post********* */
+.createPost {
+  background: var(--bg-primary);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px var(--shadow-1);
+  margin-top: 1.1rem;
+  width: 100%;
+  cursor: pointer;
+}
+.createPost_header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 17px 5px 15px;
+}
+.createPost_header img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.open_post {
+  background: var(--bg-forth);
+  color: var(--color-secondary);
+  height: 41px;
+  flex: 1;
+  border-radius: 50px;
+  font-size: 17px;
+  line-height: 21px;
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+}
+.create_splitter {
+  height: 1px;
+  width: 95%;
+  background: var(--bg-third);
+  margin: 7px 10px;
+}
+.createPost_body {
+  padding: 0 10px 8px 10px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.createPost_icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-weight: 600;
+  padding: 5px;
+  color: var(--color-secondary);
+  border-radius: 10px;
+  font-size: 14px;
+}
+
+/* *************create post********* */
+/* ****************************************Middle Home******************************** */
+
+
+
+ /* ******************************************Right Home******************************* */
 
  .right_home {
   position: fixed;
@@ -185,6 +381,122 @@
   transform: translateY(-5px);
 }
 
- /* ********Right Home********** */
+ /**********************************************Right Home************************************** */
 
+/* *******************media query**************** */
 
+@media (max-width: 1175px) {
+  
+  .stories {
+    grid-template-columns: repeat(5, 105px);
+  }
+
+}
+
+@media (max-width: 1030px) {
+
+  .left_home {
+    width: 20%;
+    background: var(--bg-primary);
+  }
+ 
+  .home {
+    justify-content: end;
+  }
+  .home_middle{
+    margin-right: 2%;
+  }
+  .right_home {
+      display: none;
+  }
+  .contacts_header_right {
+    right: 10%;
+  }
+  .contact_circle {
+    width: 20px;
+  }
+  .stories,
+  .createPost {
+    /* width: 100%; */
+    grid-template-columns: repeat(6, 105px);
+    
+  }
+}
+
+@media (max-width: 885px) {
+ 
+  .stories{
+    width: 600px;
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+    -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  
+
+  }
+  .stories::-webkit-scrollbar {
+    display: none;
+}
+
+  .create_story_card{
+    width: 120px;
+    /* float: left; */
+    display: inline-block;
+    margin-left: 10px;
+  }
+  .story{
+    width: 120px;
+    display: inline-block;
+    margin-left: 5px;
+  }
+  .white_circle{
+    display: none;
+  }
+
+}
+
+@media (max-width: 780px) {
+  .left_home {
+    display: none;
+  }
+  .home {
+   justify-content: center;
+  }
+  .home_middle{
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+}
+@media (max-width: 620px) {
+  .stories {
+    width: 450px;
+  }
+}
+@media (max-width: 440px) {
+  .stories {
+    width: 400px;
+  }
+  .createPost{
+    width: 400px;
+  }
+
+}
+@media (max-width: 380px) {
+  .stories {
+    width: 360px;
+  }
+  .createPost{
+    width: 360px;
+  }
+  .createPost_icon{
+    font-size: 12px;
+  }
+  .open_post{
+    font-size: 15px;
+  }
+
+}
+
+/* *******************media query**************** */
