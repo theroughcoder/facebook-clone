@@ -12,7 +12,7 @@ import {
 import { generateToken } from "../helpers/tokens.js";
 import { sendVerificationEmail } from "../helpers/mailer.js";
 import jwt from "jsonwebtoken";
-
+import {authUser} from "../middlewares/auth.js"
 
 
 const router = express.Router();
@@ -133,6 +133,11 @@ router.post('/login', async(req, res)=> {
   } catch (error) {
     res.status(500).json({ message: error.message });
   } 
+})
+
+router.get("/test",  authUser, (req, res)=>{
+  console.log("yes")
+  res.json({message: req.user})
 })
 
 export default router;
