@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom";
 
 import Container from "react-bootstrap/Container";
 import Login from "./screen/Login";
+import Activate from "./screen/Activate";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 
@@ -20,6 +21,8 @@ function App() {
           <Route element={<LoggedInRoutes/>}>
 
           <Route path="/" element={<Home />} />;
+          <Route path="/activate/:token" element={<Activate/>} />;
+
           </Route>
           <Route element={<NotLoggedInRoutes/>}>
 

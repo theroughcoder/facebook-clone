@@ -90,7 +90,8 @@ export default function RegisterForm({setVisible}) {
     }
     return (
         <div>
-            <div className='blur'></div>
+            <div className='blur'>
+
             <div className='register'>
                 <div className='register_header'>
                     <i onClick={()=>{setVisible(false)}} className='exit_icon'></i>
@@ -254,6 +255,7 @@ export default function RegisterForm({setVisible}) {
                     )
                 }}
                 </Formik>
+            </div>
             </div>
         </div>
     )

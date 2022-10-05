@@ -69,7 +69,7 @@ router.post("/register", expressAsyncHandler(async (req, res, next) => {
     let newUsername = await validateUsername(tempUsername);
 
     const user = new User({
-      first_name,
+      first_name, 
       last_name,
       email,
       password: cryptedPassword,
@@ -77,12 +77,12 @@ router.post("/register", expressAsyncHandler(async (req, res, next) => {
       bYear,
       bMonth,
       bDay,
-      gender,
+      gender,  
     });
     await user.save(); 
     const emailVerificationToken = generateToken({id: user._id.toString()}, "30m")
-    const url = `${process.env.BASE_URL}/api/users/activate/${emailVerificationToken}`;
-    // sendVerificationEmail(user.email, user.first_name, url)    
+    const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
+    sendVerificationEmail(user.email, user.first_name, url)    
     res.send({
       id: user._id,
       username: user.username,
@@ -93,19 +93,30 @@ router.post("/register", expressAsyncHandler(async (req, res, next) => {
       verified: user.verified,
       message: "Register success! Please activate your email to start"
     }); 
-  } catch (error) {
+  } catch (error) {  
     res.status(500).json({ message: error.message });
   } 
-}));
-router.post('/activate', async(req, res)=> {
-  const {token} = req.body;
-  const user = jwt.verify(token, process.env.JWT_SECRET);
-  const check = await User.findById(user.id);
-  if(check.verified == true){
-    return res.status(400).json({message: "this email is already activated"})
-  } else {
-    await User.findByIdAndUpdate(user.id, {verified: true});
-    return res.status(200).json({message: "Account has been activated successfully"})
+})); 
+router.post('/activate', authUser, async(req, res)=> {
+  const validUser = req.user.id;
+  try{
+
+    const {token} = req.body;
+    const user = jwt.verify(token, process.env.JWT_SECRET); 
+    const check = await User.findById(user.id);
+    if (validUser !== user.id) {
+      return res.status(400).json({
+        message: "You don't have the authorization to complete this operation.",
+      });
+    }
+    if(check.verified == true){
+      return res.status(400).json({message: "this email is already activated"})
+    } else {
+      await User.findByIdAndUpdate(user.id, {verified: true});
+      return res.status(200).json({message: "Account has been activated successfully"})
+    }
+  } catch(error){
+    res.status(500).json({message: error.message})
   }
 })
 router.post('/login', async(req, res)=> {
@@ -116,6 +127,7 @@ router.post('/login', async(req, res)=> {
       return res.status(400).json({message: "Email address you entered is not found"}) 
     }
     if(bcrypt.compareSync(password, user.password)) {
+   
         return res.send({
           id: user._id,
           username: user.username,
@@ -125,10 +137,11 @@ router.post('/login', async(req, res)=> {
           token: generateToken({id: user._id.toString()}, "7d"),
           verified: user.verified,
         });
+        
     }else {
       return res.status(400).json({message: "Invalid credentials. Please try again."})
     }
-    
+      
 
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -136,7 +149,6 @@ router.post('/login', async(req, res)=> {
 })
 
 router.get("/test",  authUser, (req, res)=>{
-  console.log("yes")
   res.json({message: req.user})
 })
 
