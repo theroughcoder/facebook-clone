@@ -10,6 +10,7 @@ import Header from "../component/header/Header";
 import LeftHome from "../component/home/left";
 import RightHome from "../component/home/right";
 import Stories from "../component/home/stories";
+import SendVerification from "../component/home/sendVerification";
 import  "../style/Home.css"
 
 function HomeScreen() {
@@ -20,6 +21,7 @@ const{user} = useSelector((state) => state)
       <LeftHome user={user}/>
       <div className="home_middle">
         <Stories />
+        {user.verified === false && <SendVerification user={user} />}
         <CreatePost user={user} />
       </div>
       <RightHome user={user}/>

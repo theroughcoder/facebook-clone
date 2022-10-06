@@ -55,7 +55,7 @@ console.log(token)
         dispatchLoc({type: "ACTIVATE_SUCCESS", payload: data.message})
       Cookies.set("user", JSON.stringify({ ...user, verified: true }));
       dispatch({
-        type: "VERIFY",
+        type: "USER_VERIFY",
         payload: true,
       });
 
