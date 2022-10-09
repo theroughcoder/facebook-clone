@@ -10,7 +10,7 @@ function Login() {
     <div className="login">
        <LoginForm setVisible={setVisible} />
        {visible && <RegisterForm setVisible={setVisible} />}
-      <Footer/>
+      {/* <Footer/> */}
       </div>
   );
 }

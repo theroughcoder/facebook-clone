@@ -7,6 +7,7 @@ export default function RegisterInput({ placeholder, ...props }) {
   return (
     <div className="input_wrap">
       <input
+      // autocomplete="off"
         className={meta.touched && meta.error ? "input_error_border" : ""}
         // type={field.type}
         // name={field.name}

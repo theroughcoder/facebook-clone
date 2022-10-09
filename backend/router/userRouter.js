@@ -2,6 +2,7 @@ import express from "express";
 import bcrypt from "bcryptjs";
 
 import User from "../models/userModel.js";
+import Code from "../models/codeModel.js";
 import expressAsyncHandler from "express-async-handler";
 // import { generateToken, isAdmin, isAuth } from '../utils.js';
 import {
@@ -10,9 +11,10 @@ import {
   validateUsername,
 } from "../helpers/validation.js";
 import { generateToken } from "../helpers/tokens.js";
-import { sendVerificationEmail } from "../helpers/mailer.js";
+import { sendResetCode, sendVerificationEmail } from "../helpers/mailer.js";
 import jwt from "jsonwebtoken";
 import {authUser} from "../middlewares/auth.js"
+import generateCode from "../helpers/generateCode.js";
 
 
 const router = express.Router();
@@ -171,6 +173,74 @@ router.post("/sendVerification",  authUser, async (req, res) => {
   }
 }
 )
+router.post("/findUser", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select("-password");
+    if (!user) {
+      return res.status(400).json({
+        message: "Account does not exists.",
+      });
+    }
+    return res.status(200).json({
+      email: user.email,
+      picture: user.picture,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.post("/sendResetPasswordCode", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email }).select("-password");
+    await Code.findOneAndRemove({ user: user._id });
+    const code = generateCode(5);
+    const savedCode = await new Code({
+      code,
+      user: user._id,
+    }).save();
+    sendResetCode(user.email, user.first_name, code);
+    return res.status(200).json({
+      message: "Email reset code has been sent to your email",
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.post("/validateResetCode", async (req, res) => {
+  try {
+    const { email, code } = req.body;
+    const user = await User.findOne({ email });
+    const Dbcode = await Code.findOne({ user: user._id });
+    if (Dbcode.code !== code) {
+      return res.status(400).json({
+        message: "Verification code is wrong..",
+      });
+    }
+    return res.status(200).json({ message: "ok" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.post("/changePassword", async (req, res) => {
+  const { email, password } = req.body;
+
+  const cryptedPassword = await bcrypt.hash(password, 12);
+  try {
+    await User.findOneAndUpdate(
+      { email },
+      {
+        password: cryptedPassword,
+      }
+    );
+    return res.status(200).json({ message: "ok" });
+   
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
 router.get("/test",  authUser, (req, res)=>{
   res.json({message: req.user})
 })

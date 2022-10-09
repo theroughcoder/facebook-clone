@@ -100,7 +100,7 @@ export default function AllMenu({ setShowAllMenu }) {
             ))}
           </div>
         </div>
-
+          
         <div className="all_right scrollbar">
           <div className="all_right_header">Create</div>
           {create.map((item, i) => (

@@ -16,10 +16,11 @@
 }
 .login {
   background: var(--bg-secondary);
+  min-height: 92vh;
 }
 .login_wrap {
   color: var(--color-primary);
-  min-height: 90vh;
+  min-height: 92vh;
 }
 .login_1 {
   width: 320px;
@@ -109,13 +110,16 @@
   background: var(--bg-primary);
   top: 3%;
   left: 50%;
-  transform:translate(-50%);
+  transform: translateX(-50%) ;
+ 
+  
   box-shadow: 0 1px 2px var(--shadow-1);
   border-radius: 10px;
   padding: 10px;
   padding-bottom: 1rem;
   width: 350px;
-  height: fit-content;
+  height: 80vh;
+  overflow-y: auto;
   color: var(--color-primary);
 }
 .register_header {
@@ -260,6 +264,9 @@
   /* *****register******** */
   .register {
     width: 400px;
+    height: fit-content;
+    top: 50%;
+    transform: translate(-50%, -50%) ;
   }
 
   .reg_fl_flex {

@@ -1,0 +1,220 @@
+.reset {
+  background: var(--bg-secondary);
+  height: 92vh;
+  color: var(--color-primary);
+}
+.reset_header {
+  background: var(--bg-primary);
+  box-shadow: 1px 8px 15px -7px var(--shadow-1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  margin-bottom: 50px;
+}
+.reset_header img {
+  width: 160px;
+}
+.right_reset {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.right_reset img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.reset_wrap {
+  height:65vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+
+}
+.reset_form {
+  position: relative;
+  background: var(--bg-primary);
+  box-shadow: 0 1px 2px var(--shadow-1);
+  border-radius: 10px;
+  width: 500px;
+  height: fit-content !important;
+  margin: 10px;
+}
+
+.reset_form_header {
+  padding: 15px;
+  font-weight: 600;
+  font-size: 24px;
+  border-bottom: 1px solid var(--bg-third);
+}
+.reset_form_text {
+  padding: 15px 20px;
+  font-size: 17px;
+}
+.reset_form form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 10px;
+  justify-content: center;
+  
+}
+.reset_input_error_border{
+  border-color: #e51c19 !important;
+}
+.reset_input_wrap{
+  position: relative;
+  width: 330px;
+}
+.reset_input_wrap input {
+  
+  width: 100%;
+  outline: none;
+  border: 1px solid var(--bg-third);
+  background-color: var(--bg-primary);
+  color: var(--color-primary);
+  height: 55px;
+  font-size: 17px;
+  border-radius: 10px;
+  padding-left: 20px;
+  margin-bottom:20px;
+  box-sizing: border-box;
+}
+.reset_input_wrap input:focus{
+  border-color: #304fea ;
+
+}
+.reset_input_wrap i {
+  position: absolute;
+  right: 5px;
+  top: 3px;
+  transform: scale(0.6);
+
+}
+.reset_error_display {
+  position: absolute;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #ee3f3c;
+  /* width: 100%; */
+  /* height: 30px; */
+  color: #fefeff;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  z-index: 1;
+  bottom: -40px;
+  /* width: 100%; */
+  /* text-align: center; */
+  /* border: 1px solid#d6211e; */
+}
+.reset_error_display_up {
+  position: absolute;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #ee3f3c;
+ 
+  color: #fefeff;
+  font-size: 14px;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  z-index: 1;
+  top: -70px;
+}
+.reset_error_arrow_bottom{
+  border-bottom: 10px solid #ee3f3c;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  position: absolute;
+  top: -10px;
+  left: 50px;
+}
+.reset_error_arrow_top{
+  border-top: 10px solid #ee3f3c;
+  border-right: 10px solid transparent;
+  border-left: 10px solid transparent;
+  position: absolute;
+  bottom: -10px;
+  left: 50px;
+}
+.reset_form_btns {
+  width: 100%;
+box-sizing: border-box;
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-top: 5px;
+  padding: 10px;
+  position: relative;
+  border-top: 1px solid var(--bg-third);
+}
+.reset_form_btns a,
+.reset_form_btns button {
+  width: 90px;
+  margin:  5px 0;
+
+}
+.reset_grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  font-size: 15px;
+  color: var(--color-secondary);
+}
+.reset_left {
+  padding: 15px;
+}
+.reset_grid label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  padding: 5px;
+}
+.reset_left input {
+  width: 20px;
+  height: 20px;
+}
+.label_col {
+  display: flex;
+  flex-direction: column;
+}
+.reset_right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.reset_right img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.dynamic_height {
+  height: 430px;
+}
+.conf_password_error {
+  transform: translateY(62px) !important;
+}
+.conf_password_error .error_arrow_left {
+  transform: rotate(180deg) translateY(65px);
+}
+.err_res_password {
+  transform: translateY(-16px) !important;
+}
+.err_res_password .error_arrow_left {
+  transform: translateY(19px);
+}
+/*----Queries----*/
+@media(max-width: 450px) {
+  .reset_form_btns{
+    justify-content: center;
+  }
+  .reset_form_btns a , .reset_form_btns button {
+    width: 35%;
+  }
+}
+  
+/*----Queries----*/

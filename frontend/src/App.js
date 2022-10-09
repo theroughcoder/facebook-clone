@@ -8,6 +8,7 @@ import Login from "./screen/Login";
 import Activate from "./screen/Activate";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
+import Reset from "./screen/Reset";
 
 // import { useContext, useEffect, useState } from "react";
 // import { Button, NavDropdown } from "react-bootstrap";
@@ -28,6 +29,7 @@ function App() {
 
           <Route path="/login" element={<Login />} />;
           </Route>
+          <Route path="/reset" element={<Reset/>}/>
         </Routes>
       </Container>
     </main>
