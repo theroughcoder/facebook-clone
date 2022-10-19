@@ -7,7 +7,7 @@ export default function LoginInput({ placeholder, ...props }) {
     <div className="input_wrap">
      
       <input
-      autocomplete="off"
+      autoComplete="off"
         className={meta.touched && meta.error ? "input_error_border" : ""}
         type={field.type}
         name={field.name}

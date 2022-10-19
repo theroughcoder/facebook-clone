@@ -115,7 +115,7 @@ export default function LoginForm({ setVisible }) {
             size={15}
           />
           {error && <div className='error_text'>{error}</div>}
-          <Link className="forgot_password" to="/forgot">
+          <Link className="forgot_password" to="/reset">
             Forgotten password ?
           </Link>
           <div className="sign_splitter"></div>

@@ -3,7 +3,11 @@ import path from "path"
 import mongoose from "mongoose" 
 import dotenv from "dotenv"                 
 import userRouter from "./router/userRouter.js"
+import postRouter from "./router/postRouter.js"
+import uploadRouter from "./router/uploadRouter.js"
+import fileUpload from "express-fileupload"
 import cors from 'cors'
+
 // import uploadRouter from "./router/uploadRouter.js" 
 
 // let allowed = ['http://localhost:3000','http://postman.com', 'some other link'];
@@ -34,10 +38,15 @@ const app = express();
 // app.use(cors(options))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
+app.use(fileUpload({
+  useTempFiles: true
+}))
 
          
 // app.use("/api/upload", uploadRouter);
 app.use("/api/users", userRouter);
+app.use("/api/posts", postRouter);
+app.use("/api/uploadImages", uploadRouter);
 
 
 const port = process.env.PORT || 5000;

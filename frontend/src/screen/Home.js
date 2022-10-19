@@ -12,8 +12,12 @@ import RightHome from "../component/home/right";
 import Stories from "../component/home/stories";
 import SendVerification from "../component/home/sendVerification";
 import  "../style/Home.css"
+import { useState } from "react";
 
-function HomeScreen() {
+
+function HomeScreen({setVisiblePostPopup}) {
+  const [visible, setVisible] = useState(false);
+  
 const{user} = useSelector((state) => state)
   return (
     <div className="home">
@@ -22,7 +26,9 @@ const{user} = useSelector((state) => state)
       <div className="home_middle">
         <Stories />
         {user.verified === false && <SendVerification user={user} />}
-        <CreatePost user={user} />
+       
+        
+        <CreatePost user={user} setVisiblePostPopup={setVisiblePostPopup}/>
       </div>
       <RightHome user={user}/>
     </div>

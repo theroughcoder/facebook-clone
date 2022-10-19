@@ -9,19 +9,24 @@ import Activate from "./screen/Activate";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import Reset from "./screen/Reset";
-
+import { useState } from "react";
+import CreatePostPopup from "../src/component/createPostPopup";
+import { useSelector } from "react-redux";
 // import { useContext, useEffect, useState } from "react";
 // import { Button, NavDropdown } from "react-bootstrap";
 // import axios from "axios";
 
 function App() {
+  const [visiblePostPopup, setVisiblePostPopup] = useState(false);
+  const{user} = useSelector((state) => state)
   return (
     <main>
+      {visiblePostPopup &&  <CreatePostPopup user={user} setVisiblePostPopup={setVisiblePostPopup} />}
       <Container className="mt-4">
         <Routes>
           <Route element={<LoggedInRoutes/>}>
 
-          <Route path="/" element={<Home />} />;
+          <Route path="/" element={<Home setVisiblePostPopup={setVisiblePostPopup} />} />;
           <Route path="/activate/:token" element={<Activate/>} />;
 
           </Route>

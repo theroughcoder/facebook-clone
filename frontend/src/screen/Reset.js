@@ -24,7 +24,7 @@ export default function Reset() {
   const logout = () => {
     Cookies.set("user", "");
     dispatch({
-      type: "LOGOUT",
+      type: "USER_LOGOUT",
     });
     navigate("/login");
   };
@@ -36,9 +36,10 @@ export default function Reset() {
         {user ? (
           <div className="right_reset">
             <Link to="/profile">
-              <img src={user.picture} alt="" />
+              <img style={{marginRight: "20px"}} src={user.picture} alt="" />
             </Link>
             <button
+            style={{marginRight: "10px"}}
               className="blue_btn"
               onClick={() => {
                 logout();
@@ -48,7 +49,7 @@ export default function Reset() {
             </button>
           </div>
         ) : (
-          <Link to="/login" className="right_reset">
+          <Link style={{marginRight: "10px"}} to="/login" className="right_reset">
             <button className="blue_btn">Login</button>
           </Link>
         )}

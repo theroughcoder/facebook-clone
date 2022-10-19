@@ -13,7 +13,7 @@ export default function ResetInput({ placeholder, ...props }) {
         </div>
       </div>}
       <input
-      autocomplete="off"
+      autoComplete="off"
         className={meta.touched && meta.error ? "reset_input_error_border" : ""}
         type={field.type}
         name={field.name}

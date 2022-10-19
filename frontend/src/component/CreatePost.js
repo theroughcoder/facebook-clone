@@ -1,11 +1,11 @@
 import { Feeling, LiveVideo, Photo } from "../svg";
 import UserMenu from "../component/header/AllMenu";
-export default function CreatePost({ user }) {
+export default function CreatePost({ user, setVisiblePostPopup }) {
   return (
     <div className="createPost">
       <div className="createPost_header">
         <img src={user?.picture} alt="" />
-        <div className="open_post hover2">
+        <div className="open_post hover2" onClick={()=> setVisiblePostPopup(true)}>
           What's on your mind, {user?.first_name}
         </div>
       </div>
