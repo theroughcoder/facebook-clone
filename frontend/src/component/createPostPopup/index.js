@@ -56,7 +56,6 @@ export default function CreatePostPopup({ user, setVisiblePostPopup }) {
       const response = await uploadImages(formData, path, user.token);
 
       setLoading(false);
-      if (response == "ok") {
       
         const res = await createPost(
           null,
@@ -73,10 +72,7 @@ export default function CreatePostPopup({ user, setVisiblePostPopup }) {
         } else {
           setError(res);
         }
-      } else{
-        setError(response);
-        
-      }
+     
     } else if (text) {
       setLoading(true);
       const response = await createPost(

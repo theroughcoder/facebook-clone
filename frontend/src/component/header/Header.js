@@ -21,12 +21,12 @@ import useClickOutSide from "../../helpers/clickOutSide";
 import UserMenu from "./userMenu";
 
 export default function Header() {
+
   const color = "#65676b";
   const userInfo = useSelector((state) => state.user);
   const [showSearchMenu, setShowSearchMenu] = useState(false);
   const [showAllMenu, setShowAllMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-
   const allMenu = useRef(null);
   const usermenu = useRef(null);
   useClickOutSide(allMenu, () => {

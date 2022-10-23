@@ -4,7 +4,6 @@ import { Return } from "../../svg";
 import AllMenuItem from "./AllMenuItem";
 export default function AllMenu({ setShowAllMenu }) {
   const color = "#65676b";
-
   return (
     <div className="all_menu">
       <div

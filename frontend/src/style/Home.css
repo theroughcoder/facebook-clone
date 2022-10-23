@@ -125,6 +125,7 @@
 }
 .home_middle {
   margin-top: 75px;
+  width: 680px;
   /* position: absolute; */
   /* left: 50%; */
   /* transform: translateX(-50%); */
@@ -495,7 +496,7 @@
 }
 @media (max-width: 380px) {
   .home_middle{
-    width: 360px;
+    width: 350px;
   }
 
   .createPost_icon{

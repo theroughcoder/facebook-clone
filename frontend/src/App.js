@@ -26,7 +26,7 @@ function App() {
         <Routes>
           <Route element={<LoggedInRoutes/>}>
 
-          <Route path="/" element={<Home setVisiblePostPopup={setVisiblePostPopup} />} />;
+          <Route path="/" element={<Home visiblePostPopup={visiblePostPopup} setVisiblePostPopup={setVisiblePostPopup} />} />;
           <Route path="/activate/:token" element={<Activate/>} />;
 
           </Route>
