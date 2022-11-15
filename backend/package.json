@@ -9,7 +9,8 @@
     "googleapis": "^107.0.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^6.3.3",
-    "nodemailer": "^6.7.8"
+    "nodemailer": "^6.7.8",
+    "react-easy-crop": "^4.6.1"
   },
   "scripts": {
     "start": "nodemon server.js"

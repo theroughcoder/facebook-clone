@@ -5,6 +5,7 @@ import dotenv from "dotenv"
 import userRouter from "./router/userRouter.js"
 import postRouter from "./router/postRouter.js"
 import uploadRouter from "./router/uploadRouter.js"
+import listImagesRouter from "./router/listImagesRouter.js"
 import fileUpload from "express-fileupload"
 import cors from 'cors'
 
@@ -47,6 +48,7 @@ app.use(fileUpload({
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/uploadImages", uploadRouter);
+app.use("/api/listImages", listImagesRouter);
 
 
 const port = process.env.PORT || 5000;

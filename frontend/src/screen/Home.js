@@ -15,31 +15,14 @@ import Post from "../component/post";
 import  "../style/Home.css"
 import { useEffect, useReducer, useState } from "react";
 import axios from "axios";
+import {postsReducer} from "../functions/reducers"
+import Testmemo from "./TestMemo";
 
-
-  function reducer(state, action) {
-    switch (action.type) {
-      case "POSTS_REQUEST":
-        return { ...state, loading: true, error: "" };
-      case "POSTS_SUCCESS":
-        return {
-          ...state,
-          loading: false,
-          posts: action.payload,
-          error: "",
-        };
-      case "POSTS_ERROR":
-        return { ...state, loading: false, error: action.payload };
-  
-      default:
-        return state;
-    }
-  }
 
 function HomeScreen({visiblePostPopup, setVisiblePostPopup}) {
   const [visible, setVisible] = useState(false);
 
-  const [{ loading, error, posts }, dispatch] = useReducer(reducer, {
+  const [{ loading, error, posts }, dispatch] = useReducer(postsReducer, {
     loading: false,
     posts: [],
     error: "",
@@ -75,9 +58,10 @@ function HomeScreen({visiblePostPopup, setVisiblePostPopup}) {
   
   return (
     <div className="home">
-      <Header />
+      <Header page="home"/>
       <LeftHome user={user}/>
       <div className="home_middle">
+        <Testmemo />
         <Stories />
         {user.verified === false && <SendVerification user={user} />}
        

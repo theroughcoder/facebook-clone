@@ -7,7 +7,7 @@ cloudinary.config({
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
-const router = express.Router();
+const router = express.Router(); 
    
 export default router.post(
   '/',
@@ -27,6 +27,7 @@ export default router.post(
     return res.status(500).json({ message: error.message });
   }
 });
+
 
 const uploadToCloudinary = async (file, path) => {
   return new Promise((resolve) => {

@@ -6,6 +6,7 @@ import { Routes, Route } from "react-router-dom";
 import Container from "react-bootstrap/Container";
 import Login from "./screen/Login";
 import Activate from "./screen/Activate";
+import Profile from "./screen/profile";
 import LoggedInRoutes from "./routes/LoggedInRoutes";
 import NotLoggedInRoutes from "./routes/NotLoggedInRoutes";
 import Reset from "./screen/Reset";
@@ -28,6 +29,9 @@ function App() {
 
           <Route path="/" element={<Home visiblePostPopup={visiblePostPopup} setVisiblePostPopup={setVisiblePostPopup} />} />;
           <Route path="/activate/:token" element={<Activate/>} />;
+          <Route path="/profile" element={<Profile/>} />;
+          <Route path="/profile/:username" element={<Profile/>} />;
+          
 
           </Route>
           <Route element={<NotLoggedInRoutes/>}>
