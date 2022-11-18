@@ -4,6 +4,7 @@ import mongoose from "mongoose"
 import dotenv from "dotenv"                 
 import userRouter from "./router/userRouter.js"
 import postRouter from "./router/postRouter.js"
+import reactRouter from "./router/reactRouter.js"
 import uploadRouter from "./router/uploadRouter.js"
 import listImagesRouter from "./router/listImagesRouter.js"
 import fileUpload from "express-fileupload"
@@ -49,6 +50,7 @@ app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
 app.use("/api/uploadImages", uploadRouter);
 app.use("/api/listImages", listImagesRouter);
+app.use("/api/reacts", reactRouter);
 
 
 const port = process.env.PORT || 5000;
