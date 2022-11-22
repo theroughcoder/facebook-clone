@@ -21,13 +21,14 @@ router.put("/reactPost" , authUser, async(req, res)=>{
           await newReact.save();
         } else {
           if (check.react == react) {
-            await React.findByIdAndRemove(check._id);
+            await check.remove();
           } else {
-            await React.findByIdAndUpdate(check._id, {
+            await check.updateOne( {
               react: react,
             });
           }
         }
+        res.json({message: "okk"})
       } catch (error) {
         return res.status(500).json({ message: error.message });
       }

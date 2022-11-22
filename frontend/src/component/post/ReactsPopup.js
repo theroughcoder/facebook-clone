@@ -32,16 +32,17 @@ export default function ReactsPopup({ visible, setVisible, reactHandler}) {
       {visible && (
         <div
           className="reacts_popup"
-          onMouseOver={() => {
-            setTimeout(() => {
-              setVisible(true);
-            }, 500);
-          }}
-          onMouseLeave={() => {
-            setTimeout(() => {
-              setVisible(false);
-            }, 500);
-          }}
+          // onMouseOver={() => {
+         
+          //     setVisible(true);
+           
+          // }}
+          // onMouseLeave={() => {
+          //   setTimeout(() => {
+          //     setVisible(false);
+          //   }, 500);
+          // }}
+          onClick={()=> setVisible(false)}
         >
           {reactsArray.map((react, i) => (
             <div className="react" key={i} onClick={()=> reactHandler( react.name)}>

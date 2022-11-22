@@ -276,7 +276,8 @@ router.get("/getProfile/:username", authUser, async (req, res) => {
     }
     const posts = await Post.find({ user: profile._id })
       .populate("user")
-      .sort({ createdAt: -1 });
+      .sort({ createdAt: -1 })
+      .populate("comments.commentBy", "first_name last_name username picture")
 
       await profile.populate('friends', 'first_name last_name username picture')
     res.json({ ...profile.toObject(), posts, friendship });

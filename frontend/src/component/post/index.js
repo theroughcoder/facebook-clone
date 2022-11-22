@@ -3,22 +3,27 @@ import "./style.css";
 import Moment from "react-moment";
 import { Dots, Public } from "../../svg";
 import ReactsPopup from "./ReactsPopup";
-import { useEffect, useState } from "react";
+import { useEffect, useState} from "react";
 import CreateComment from "./CreateComment";
 import PostMenu from "./PostMenu";
-import { getReacts, reactPost } from "../../functions/post";
+import {comment, getReacts, reactPost } from "../../functions/post";
+import Comment from "./Comment";
 export default function Post({ post, user }) {
   const [visible, setVisible] = useState(false);
+  const [count, setCount] = useState(1);
   const [showMenu, setShowMenu] = useState(false);
   const [start, setStart] = useState(0);
   const [end, setEnd] = useState(5);
   const [reacts, setReacts] = useState();
   const [check, setCheck] = useState();
+  const [comments, setComments] = useState([]);
   const [total, setTotal] = useState(0);
-  
+  let second ;
+  let second1 ;
   const [length, setLength] = useState(post.images && post.images.length);
   useEffect(() => {
     getPostReacts();
+    setComments(post?.comments);
   }, [post]);
   const getPostReacts = async () => {
     const res = await getReacts(post._id, user.token);
@@ -43,14 +48,15 @@ export default function Post({ post, user }) {
       if (index !== -1) {
         setReacts([...reacts, (reacts[index].count = ++reacts[index].count)]);
         setTotal((prev) => ++prev);
-        console.log(reacts);
       }
       if (index1 !== -1) {
         setReacts([...reacts, (reacts[index1].count = --reacts[index1].count)]);
         setTotal((prev) => --prev);
-        console.log(reacts);
       }
     }
+  };
+  const showMore = () => {
+    setCount((prev) => prev + 3);
   };
   return (
     <div className="post">
@@ -155,34 +161,63 @@ export default function Post({ post, user }) {
                 .slice(0, 3)
                 .map( 
                   (react) =>
-                    react.count > 0 && (
-                      <img src={`../../../reacts/${react.react}.svg`} alt="" />
+                  react.count > 0 && (
+                      <img key={react.react} src={`../../../reacts/${react.react}.svg`} alt="" />
                     )
                 )}
           </div>
           <div className="reacts_count_num">{total > 0 && total}</div>
         </div>
         <div className="to_right">
-          <div className="comments_count">13 comments</div>
+          <div className="comments_count">{comments.length} comments</div>
           <div className="share_count">1 share</div>
         </div>
       </div>
       
       <div className="post_actions">
-        <ReactsPopup visible={visible} setVisible={setVisible} reactHandler={reactHandler}/>
+        <ReactsPopup visible={visible} setVisible={setVisible} reactHandler={reactHandler}     />
         <div
           className="post_action hover1"
-          onMouseOver={() => {
+      
+      
+          onMouseDown={() => {
+            second = new Date().getSeconds();
+            second1 = new Date().getSeconds() + 1;
             setTimeout(() => {
-              setVisible(true);
-            }, 200);
+              if(second1 - second  >= 1){
+               setVisible(true);
+              }
+            }, 1000);
           }}
-          onMouseLeave={() => {
+          onMouseUp={() => {
+           second1 = new Date().getSeconds();
+           if(second1 - second  < 1){
+            reactHandler(check ? check : "like")
+           }
             setTimeout(() => {
               setVisible(false);
-            }, 500);
+            }, 5000);
           }}
-          onClick={() => reactHandler(check ? check : "like")}
+          onTouchStart={() => {
+            second = new Date().getSeconds();
+            second1 = new Date().getSeconds() + 1;
+            setTimeout(() => {
+              if(second1 - second  >= 1){
+               setVisible(true);
+              }
+            }, 1000);
+          }}
+          onTouchEnd={() => {
+           second1 = new Date().getSeconds();
+           if(second1 - second  < 1){
+            reactHandler(check ? check : "like")
+           }
+            setTimeout(() => {
+              setVisible(false);
+            }, 5000);
+          }}
+          
+          
         >
            {check ? (
             <img
@@ -230,7 +265,19 @@ export default function Post({ post, user }) {
       </div>
       <div className="comments_wrap">
         <div className="comments_order"></div>
-        <CreateComment user={user} />
+        <CreateComment user={user} postId={post._id} setComments={setComments}/>
+      {comments &&
+          comments
+            .sort((a, b) => {
+              return new Date(b.commentAt) - new Date(a.commentAt);
+            })
+            .slice(0, count)
+            .map((comment, i) => <Comment comment={comment} key={i} />)}
+        {count < comments.length && (
+          <div className="view_comments" onClick={() => showMore()}>
+            View more comments
+          </div>
+        )}
       </div>
       {showMenu && (
         <PostMenu
