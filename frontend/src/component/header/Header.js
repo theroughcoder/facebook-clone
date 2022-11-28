@@ -55,7 +55,7 @@ export default function Header({page}) {
           />
         </div>
       </div>
-      {showSearchMenu && <SearchMenu setShowSearchMenu={setShowSearchMenu} />}
+      {showSearchMenu && <SearchMenu setShowSearchMenu={setShowSearchMenu} token={userInfo.token} />}
       <div className="header_middle">
         <Link to="/" className={`middle_icon ${page === "home" ? "active": "hover1"}`}>
           {page==="home" ?  <HomeActive /> : <Home color={color}/>}

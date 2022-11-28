@@ -84,3 +84,36 @@ export const comment = async (postId, comment, image, token) => {
     return error.response.data.message;
   }
 };
+export const savePost = async (postId, token) => {
+  try {
+    const { data } = await axios.put(
+      `/api/posts/savePost/${postId}`,
+      {},
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const deletePost = async (postId, token) => {
+  try {
+    const { data } = await axios.delete(
+      `/api/posts/deletePost/${postId}`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};

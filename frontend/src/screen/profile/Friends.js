@@ -23,6 +23,7 @@ export default function Friends({ friends }) {
             .map((friend) =>  <Link
             to={`/profile/${friend.username}`}
             className="profile_photo_card"
+            key={friend.username}
           >
             <img src={friend.picture} alt="" />
             <span>

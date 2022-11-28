@@ -3,12 +3,13 @@ import "./style.css";
 import Moment from "react-moment";
 import { Dots, Public } from "../../svg";
 import ReactsPopup from "./ReactsPopup";
-import { useEffect, useState} from "react";
+import { useEffect, useRef, useState} from "react";
 import CreateComment from "./CreateComment";
 import PostMenu from "./PostMenu";
 import {comment, getReacts, reactPost } from "../../functions/post";
 import Comment from "./Comment";
 export default function Post({ post, user }) {
+  const postRef = useRef(null)
   const [visible, setVisible] = useState(false);
   const [count, setCount] = useState(1);
   const [showMenu, setShowMenu] = useState(false);
@@ -18,6 +19,7 @@ export default function Post({ post, user }) {
   const [check, setCheck] = useState();
   const [comments, setComments] = useState([]);
   const [total, setTotal] = useState(0);
+  const [checkSaved, setCheckSaved] = useState();
   let second ;
   let second1 ;
   const [length, setLength] = useState(post.images && post.images.length);
@@ -30,6 +32,7 @@ export default function Post({ post, user }) {
     setReacts(res.reacts);
     setCheck(res.check);
     setTotal(res.total);
+    setCheckSaved(res.checkSaved);
   };
 
   const reactHandler = async (type) => {
@@ -59,7 +62,7 @@ export default function Post({ post, user }) {
     setCount((prev) => prev + 3);
   };
   return (
-    <div className="post">
+    <div className="post" ref={postRef}>
       <div className="post_header">
         <Link
           to={`/profile/${post.user.username}`}
@@ -285,6 +288,12 @@ export default function Post({ post, user }) {
           postUserId={post.user._id}
           imagesLength={post?.images?.length}
           setShowMenu={setShowMenu}
+          postId={post._id}
+          token={user.token}
+          checkSaved={checkSaved}
+          setCheckSaved={setCheckSaved}
+          images={post.images}
+          postRef={postRef}
         />
       )}
     </div>

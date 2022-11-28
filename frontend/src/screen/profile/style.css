@@ -543,13 +543,25 @@ grid-template-columns: 40% 28% 28%;
 .scrollFixed .profile_left {
   position: fixed;
   width: 360px;
+  height: 100vh;
+  overflow-y: auto;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.profile_left::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.profile_left {
+-ms-overflow-style: none;  /* IE and Edge */
+scrollbar-width: none;  /* Firefox */
 }
 .scrollFixed .profile_right {
   margin-left: 370px;
   width: 504px;
 }
 .showLess .profile_left {
-  bottom: 10px;
+  top: 50px;
 }
 .showMore .profile_left {
   top: 54px;

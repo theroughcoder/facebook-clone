@@ -156,3 +156,80 @@ export const deleteRequest = async (id, token) => {
     return error.response.data.message;
   }
 };
+export const search = async (searchTerm, token) => {
+  try {
+    const { data } = await axios.post( 
+      `/api/users/search/${searchTerm}`,
+      {},
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const getUsers = async (token) => {
+  try {
+    const { data } = await axios.get( 
+      `/api/users/getAllUsers`
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const addToSearchHistory = async (searchUser, token) => {
+  try {
+    const { data } = await axios.put(
+      `/api/users/addToSearchHistory`,
+      { searchUser },
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const getSearchHistory = async (token) => {
+  try {
+    const { data } = await axios.get(
+      `/api/users/getSearchHistory`,
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};
+export const removeFromSearch = async (searchUser, token) => {
+  try {
+    const { data } = await axios.put(
+      `/api/users/removeFromSearch`,
+      { searchUser },
+
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+    return data;
+  } catch (error) {
+    return error.response.data.message;
+  }
+};

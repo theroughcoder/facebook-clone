@@ -36,7 +36,7 @@ function HomeScreen({visiblePostPopup, setVisiblePostPopup}) {
         type: "POSTS_REQUEST",
       });
       const { data } = await axios.get(
-        `/api/posts/${user.id}`,
+        `/api/posts/getPosts`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -61,7 +61,7 @@ function HomeScreen({visiblePostPopup, setVisiblePostPopup}) {
       <Header page="home"/>
       <LeftHome user={user}/>
       <div className="home_middle">
-        <Testmemo />
+        {/* <Testmemo /> */}
         <Stories />
         {user.verified === false && <SendVerification user={user} />}
        

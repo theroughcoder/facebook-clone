@@ -1,5 +1,6 @@
 import express from "express";
 import React from "../models/reactModel.js";
+import User from "../models/userModel.js";
 import { authUser } from "../middlewares/auth.js";
 import mongoose from "mongoose";
 
@@ -80,10 +81,15 @@ router.get("/getReacts/:id", authUser, async (req, res) => {
         postRef: req.params.id,
         reactBy: req.user.id,
       });
+      const user = await User.findById(req.user.id);
+      const checkSaved = user?.savedPosts.find(
+        (x) => x.post.toString() === req.params.id
+      );
       res.json({
         reacts,
         check: check?.react,
         total: reactsArray.length,
+        checkSaved: checkSaved ? true: false
       });
     } catch (error) {
       return res.status(500).json({ message: error.message });

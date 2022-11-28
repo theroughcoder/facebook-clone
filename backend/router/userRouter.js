@@ -71,12 +71,14 @@ router.post("/register", expressAsyncHandler(async (req, res, next) => {
     let tempUsername = first_name + last_name;
     let newUsername = await validateUsername(tempUsername);
 
+    const capitalize = s => s[0].toUpperCase() + s.slice(1)
+
     const user = new User({
-      first_name, 
-      last_name,
+      first_name: capitalize(first_name), 
+      last_name: capitalize(last_name),
       email,
       password: cryptedPassword,
-      username: newUsername,
+      username: newUsername, 
       bYear,
       bMonth,
       bDay,
@@ -531,6 +533,84 @@ router.put("/deleteRequest/:id", authUser, async (req, res) => {
     } else {
       return res.status(400).json({ message: "You can't delete yourself" });
     }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+router.get("/getAllUsers", async (req, res) => {
+  try {
+    const results = await User.find().select(
+      "first_name last_name username picture"
+    );
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.post("/search/:searchTerm", authUser, async (req, res) => {
+  try {
+    const searchTerm = req.params.searchTerm;
+    const results = await User.find({ $text: { $search: searchTerm } }).select(
+      "first_name last_name username picture"
+    );
+    res.json(results);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.put("/addToSearchHistory", authUser, async (req, res) => {
+  try {
+    const { searchUser } = req.body;
+    const search = {
+      user: searchUser,
+      createdAt: new Date(),
+    };
+    
+    const user = await User.findById(req.user.id);
+    const check = user.search.find((x) => x.user.toString() === searchUser.toString());
+    if (check) {
+
+      await User.updateOne(
+        {
+          _id: req.user.id,
+          "search._id": check._id,
+        },
+        {
+          $set: { "search.$.createdAt": new Date() },
+        }
+      );
+    } else {
+      await User.findByIdAndUpdate(req.user.id, {
+        $push: {
+          search,
+        },
+      });
+    }
+    res.status(200).json({message: "ok"})
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.get("/getSearchHistory", authUser, async (req, res) => {
+  try {
+    const results = await User.findById(req.user.id)
+      .select("search")
+      .populate("search.user", "first_name last_name username picture");
+    res.json(results.search);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+router.put("/removeFromSearch", authUser, async (req, res) => {
+  try {
+    const { searchUser } = req.body;
+    await User.updateOne(
+      {
+        _id: req.user.id,
+      },
+      { $pull: { search: { user: searchUser } } }
+    );
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

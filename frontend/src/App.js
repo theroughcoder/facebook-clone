@@ -18,6 +18,7 @@ import { useSelector } from "react-redux";
 // import axios from "axios";
 
 function App() {
+
   const [visiblePostPopup, setVisiblePostPopup] = useState(false);
   const{user} = useSelector((state) => state)
   return (
