@@ -16,6 +16,7 @@ import { sendResetCode, sendVerificationEmail } from "../helpers/mailer.js";
 import jwt from "jsonwebtoken";
 import {authUser} from "../middlewares/auth.js"
 import generateCode from "../helpers/generateCode.js";
+import mongoose from "mongoose";
 
 
 const router = express.Router();
@@ -61,8 +62,8 @@ router.post("/register", expressAsyncHandler(async (req, res, next) => {
           message:
             "Last name should contain atleast 3 and atmost 30 characters",
         });
-    }
-    if (!validateLength(password, 6, 40)) {
+    } 
+    if (!validateLength(password, 6, 40)) { 
       return res
         .status(400)
         .json({ message: "Password should be of atleast 6 characters" });
@@ -87,7 +88,7 @@ router.post("/register", expressAsyncHandler(async (req, res, next) => {
     await user.save(); 
     const emailVerificationToken = generateToken({id: user._id.toString()}, "30m")
     const url = `${process.env.BASE_URL}/activate/${emailVerificationToken}`;
-    sendVerificationEmail(user.email, user.first_name, url)    
+    // sendVerificationEmail(user.email, user.first_name, url)    
     res.send({
       id: user._id, 
       username: user.username,
@@ -375,8 +376,8 @@ router.put("/cancelRequest/:id", authUser, async (req, res) => {
         await receiver.updateOne({
           $pull: { followers: sender._id },
         });
-        await sender.updateOne({
-          $pull: { following: sender._id },
+        await sender.updateOne({ 
+          $pull: { following: receiver._id },
         });
         res.json({ message: "you successfully canceled request" });
       } else {
@@ -479,8 +480,8 @@ router.put("/unfriend/:id", authUser, async (req, res) => {
       const sender = await User.findById(req.user.id);
       const receiver = await User.findById(req.params.id);
       if (
-        receiver.friends.includes(sender._id) &&
-        sender.friends.includes(receiver._id)
+        receiver.followers.includes(sender._id) &&
+        sender.following.includes(receiver._id)
       ) {
         await receiver.update({
           $pull: {
@@ -551,7 +552,7 @@ router.get("/getAllUsers", async (req, res) => {
 router.post("/search/:searchTerm", authUser, async (req, res) => {
   try {
     const searchTerm = req.params.searchTerm;
-    const results = await User.find({ $text: { $search: searchTerm } }).select(
+    const results = await User.find({ $or: [ { first_name: { $regex: searchTerm, $options: 'i' } }, { last_name: { $regex: searchTerm, $options: 'i' } } ] }).select(
       "first_name last_name username picture"
     );
     res.json(results);
@@ -611,6 +612,24 @@ router.put("/removeFromSearch", authUser, async (req, res) => {
       },
       { $pull: { search: { user: searchUser } } }
     );
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  } 
+});
+router.get("/getFriendsPageInfos", authUser, async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id)
+      .select("friends requests")
+      .populate("friends", "first_name last_name picture username")
+      .populate("requests", "first_name last_name picture username");
+    const sentRequests = await User.find({
+      requests: mongoose.Types.ObjectId(req.user.id),
+    }).select("first_name last_name picture username");
+    res.json({
+      friends: user.friends,
+      requests: user.requests,
+      sentRequests,
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

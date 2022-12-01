@@ -1,9 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { search, addToSearchHistory, getSearchHistory, removeFromSearch, getUsers } from "../../functions/user";
+import {
+  search,
+  addToSearchHistory,
+  getSearchHistory,
+  removeFromSearch,
+} from "../../functions/user";
 import useClickOutSide from "../../helpers/clickOutSide";
 import { Return, Search } from "../../svg";
-
+import BarLoader from "react-spinners/BarLoader";
 export default function SearchMenu({ setShowSearchMenu, token }) {
   const color = "#65676b";
   const menu = useRef(null);
@@ -12,7 +17,7 @@ export default function SearchMenu({ setShowSearchMenu, token }) {
   const [searchTerm, setSearchTerm] = useState("");
   const [results, setResults] = useState([]);
   const [searchHistory, setSearchHistory] = useState([]);
-  const [users, setUsers]= useState([]);
+  const [loading, setLoading] = useState(false);
 
   useClickOutSide(menu, () => {
     setShowSearchMenu(false);
@@ -23,7 +28,6 @@ export default function SearchMenu({ setShowSearchMenu, token }) {
 
   useEffect(() => {
     getHistory();
-    getAllUsers();
   }, []);
   const getHistory = async () => {
     const res = await getSearchHistory(token);
@@ -33,27 +37,31 @@ export default function SearchMenu({ setShowSearchMenu, token }) {
     if (searchTerm === "") {
       setResults("");
     } else {
+      setLoading(true)
       const res = await search(searchTerm, token);
-      var regexObj = new RegExp(searchTerm, "i"); 
-      const qualifyArray =  users.filter((user)=> {
-        return user.first_name.concat(" ",user.last_name).match(regexObj)
-      });
-      const positionIncludedArray = qualifyArray.map((user)=> ({...user, position: user.first_name.concat(" ",user.last_name).search(regexObj)}))
-      setResults(positionIncludedArray.sort(function(a, b){return a.position - b.position}));
-    }
+      var regexObj = new RegExp(searchTerm, "i");
+      
+      const positionIncludedArray = res.map((user) => ({
+        ...user,
+        position: user.first_name.concat(" ", user.last_name).search(regexObj),
+      }));
+      setResults(
+        positionIncludedArray.sort(function (a, b) {
+          return a.position - b.position;
+        })
+        );
+      }
+      setLoading(false)
   };
   const addToSearchHistoryHandler = async (searchUser) => {
-      const res = await addToSearchHistory(searchUser, token);
-      setShowSearchMenu(false)                 
+    const res = await addToSearchHistory(searchUser, token);
+    setShowSearchMenu(false);
   };
   const handleRemove = async (searchUser) => {
     removeFromSearch(searchUser, token);
     getHistory();
   };
-  async function getAllUsers(){
-   const users = await getUsers();
-    setUsers(users);
-  }
+
   return (
     <div className=".header_left search_area scrollbars" ref={menu}>
       <div className="search_wrap">
@@ -93,55 +101,65 @@ export default function SearchMenu({ setShowSearchMenu, token }) {
         </div>
       )}
       <div className="not_found">
-        {searchTerm&& results =="" && <span>Result Not Found</span>
-        }
+        {searchTerm && results == "" && !loading && <span>Result Not Found</span>}
+      </div>
+      <div className="not_found">
+        {searchTerm && loading && (
+          <BarLoader
+            speedMultiplier={2}
+            color= "#656760"
+            loading={loading}
+            margin={4}
+            size={15}
+          />
+        )}
       </div>
       <div className="search_history scrollbar">
         {searchHistory &&
-        !searchTerm&&
+          !searchTerm &&
           results == "" &&
           searchHistory
             .sort((a, b) => {
               return new Date(b.createdAt) - new Date(a.createdAt);
             })
             .map((user) => (
-                <div className="search_user_item_flex hover1" key={user.user._id}>
+              <div className="search_user_item_flex hover1" key={user.user._id}>
                 <Link
-                to={`/profile/${user.user.username}`}
-                className="search_user_item hover1"
-                onClick={() => addToSearchHistoryHandler(user.user._id)}
-                key={user.user._id}
-              >
-                <img src={user.user.picture} alt="" />
-                <span>
-                  {user.user.first_name} {user.user.last_name}
-                </span>
-              </Link>
-               <i
-               className="exit_icon"
-               onClick={() => {
-                 handleRemove(user.user._id);
-               }}
-             ></i>
-             </div>
+                  to={`/profile/${user.user.username}`}
+                  className="search_user_item hover1"
+                  onClick={() => addToSearchHistoryHandler(user.user._id)}
+                  key={user.user._id}
+                >
+                  <img src={user.user.picture} alt="" />
+                  <span>
+                    {user.user.first_name} {user.user.last_name}
+                  </span>
+                </Link>
+                <i
+                  className="exit_icon"
+                  onClick={() => {
+                    handleRemove(user.user._id);
+                  }}
+                ></i>
+              </div>
             ))}
       </div>
       <div className="search_history">
         <div className="search_result scrollbar">
-        {results &&
-          results.map((user) => (
-            <Link
-              to={`/profile/${user.username}`}
-              className="search_user_item hover1"
-              onClick={() => addToSearchHistoryHandler(user._id)}
-              key={user._id}
-            >
-              <img src={user.picture} alt="" />
-              <span>
-                {user.first_name} {user.last_name}
-              </span>
-            </Link>
-          ))}
+          {results &&
+            results.map((user) => (
+              <Link
+                to={`/profile/${user.username}`}
+                className="search_user_item hover1"
+                onClick={() => addToSearchHistoryHandler(user._id)}
+                key={user._id}
+              >
+                <img src={user.picture} alt="" />
+                <span>
+                  {user.first_name} {user.last_name}
+                </span>
+              </Link>
+            ))}
         </div>
       </div>
     </div>
