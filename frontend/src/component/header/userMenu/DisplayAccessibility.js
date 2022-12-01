@@ -1,4 +1,25 @@
+import Cookies from "js-cookie";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function DisplayAccessibility({ setVisible }) {
+
+  const darkMode = useSelector((state) => state.darkMode);
+  const dispatch = useDispatch()
+  // const[darkMode, setDarkMode] = useState(false)
+
+  const darkModeHandle = (e) => {
+    if(e.target.value == "on"){
+
+      dispatch({type: "DARK_MODE_ON", payload: "on" })
+      Cookies.set("darkMode", JSON.stringify("on"));
+    } else if(e.target.value=="off"){
+      
+      dispatch({type: "DARK_MODE_OFF", payload: "off" })
+      Cookies.set("darkMode", JSON.stringify("off"));
+    }
+    // setDarkMode(e.target.value);
+  }
   return (
     <div className="absolute_wrap">
       <div className="absolute_wrap_header">
@@ -26,11 +47,20 @@ export default function DisplayAccessibility({ setVisible }) {
       </div>
       <label htmlFor="darkOff" className="hover1">
         <span>Off</span>
-        <input type="radio" name="dark" id="darkOff" />
+        {darkMode == "off"?
+        <input  type="radio" name="dark" id="darkOff" value="off" onChange={darkModeHandle} checked/>
+        :
+        <input type="radio" name="dark" id="darkOff" value="off" onChange={darkModeHandle}/>
+        }
       </label>
       <label htmlFor="darkOn" className="hover1">
         <span>On</span>
-        <input type="radio" name="dark" id="darkOn" />
+        {darkMode == "on"?
+       
+       <input type="radio" name="dark" id="darkOn" value="on" onChange={darkModeHandle} checked/>
+       :
+       <input type="radio" name="dark" id="darkOn" value="on" onChange={darkModeHandle} />
+        }
       </label>
       <div className="mmenu_main">
         <div className="small_circle" style={{ width: "50px" }}>

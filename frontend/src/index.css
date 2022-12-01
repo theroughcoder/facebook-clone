@@ -65,7 +65,7 @@ code {
   font-family: inherit;
   font-weight: 600;
   font-size: 14px;
-  color: #111;
+  color: var(--color-primary);
   display: flex;
   align-items: center;
   justify-content: center;

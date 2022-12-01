@@ -131,6 +131,7 @@ header{
     margin-right: 10px;
     font-size: 16px;
     text-decoration: none;
+    color: var(--color-primary);
 }
 .profile_link img {
     width: 28.7px;
@@ -142,7 +143,7 @@ header{
 }
 .profile_link span {
     margin-bottom: 3px;
-    color: var(--color-primary);
+    
 }
 .circle_icon{
     position: relative;
@@ -291,6 +292,7 @@ scrollbar-width: none;  /* Firefox */
 
 /* ********Search all menu *********/
 .all_menu {
+  color: var(--color-primary);
     position: absolute;
     right: -9rem;
     top: 45px;
@@ -461,6 +463,7 @@ scrollbar-width: none;  /* Firefox */
   }
   .mmenu_col span:last-of-type {
     font-size: 14px;
+    color: var(--color-secondary);
   }
   .mmenu_main {
     padding: 10px;
@@ -477,6 +480,8 @@ scrollbar-width: none;  /* Firefox */
   }
   .mmenu_span1 {
     font-size: 14px !important;
+    color: var(--color-primary);
+    font-weight: 500;
   }
   .mmenu_span2 {
     font-size: 12px !important;
@@ -491,6 +496,7 @@ scrollbar-width: none;  /* Firefox */
     font-weight: 600;
     font-size: 14px;
     border-radius: 10px;
+    color: var(--color-primary);
   }
   .rArrow {
     position: absolute;
@@ -510,6 +516,7 @@ scrollbar-width: none;  /* Firefox */
     height: fit-content;
     border-radius: 10px;
     background: var(--bg-primary);
+    color: var(--color-primary);
     box-shadow: 2px 2px 2px var(--shadow-1);
     user-select: none;
     padding: 10px;
@@ -553,7 +560,7 @@ scrollbar-width: none;  /* Firefox */
 }
 .active_link {
   background: var(--light-blue-color);
-  color: var(--blue-color);
+  color: var(--blue-color)!important;
 }
 /*----Active header----*/
 

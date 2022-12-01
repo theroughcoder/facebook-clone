@@ -27,6 +27,7 @@
   font-weight: 600;
   font-size: 14px;
   margin-bottom: 2px;
+  text-decoration: none;
 }
 .left_link img {
   width: 36px;
@@ -35,9 +36,16 @@
   margin-right: 11px;
   vertical-align: -0.25em;
 }
+
+.left_link:first-child span {
+  color: var(--color-primary);
+  font-weight: 600;
+  font-size: 16px;
+}
 .left_link span {
   margin-bottom: 4px;
   margin-left: 1px;
+
 }
 .col {
   margin-left: 2px;

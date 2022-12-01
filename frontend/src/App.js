@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 import "./App.css";
+import "../src/style/Dark.css";
 import Home from "./screen/Home";
 import { Routes, Route } from "react-router-dom";
 
@@ -23,7 +24,7 @@ import { postsReducer } from "./functions/reducers";
 function App() {
   const [visible, setVisible] = useState(false);
   const [visiblePostPopup, setVisiblePostPopup] = useState(false);
-  const{user} = useSelector((state) => state)
+  const{user, darkMode} = useSelector((state) => state)
   const [{ loading, error, posts }, dispatch] = useReducer(postsReducer, {
     loading: false,
     posts: [],
@@ -57,7 +58,7 @@ function App() {
     }
   };
   return (
-    <main>
+    <main className={darkMode == "on"? "dark": ""}>
       {visiblePostPopup &&  <CreatePostPopup user={user} setVisiblePostPopup={setVisiblePostPopup} />}
       <Container className="mt-4">
         <Routes>

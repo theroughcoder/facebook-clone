@@ -98,7 +98,7 @@
 }
 .mmenu_item{
   text-decoration: none;
-  color: rgb(80, 78, 78);
+  color: var(--color-primary);
 }
 @media (max-width: 850px) {
   .rArrow{
