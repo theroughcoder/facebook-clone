@@ -9,9 +9,15 @@ import { createPost } from "../../functions/post";
 import PulseLoader from "react-spinners/PulseLoader";
 import OldCovers from "./OldCovers";
 import { getError } from "../../utils";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 
-export default function Cover({ cover, visitor, photos, setFetch }) {
-
+export default function Cover({
+  cover,
+  visitor,
+  photos,
+  setFetch,
+  loading: skeletonLoading,
+}) {
   const [showCoverMneu, setShowCoverMenu] = useState(false);
   const [coverPicture, setCoverPicture] = useState("");
   const [loading, setLoading] = useState(false);
@@ -73,7 +79,6 @@ export default function Cover({ cover, visitor, photos, setFetch }) {
   useEffect(() => {
     setWidth(coverRef.current.clientWidth);
   }, [window.innerWidth]);
-  
 
   const updateCoverPicture = async () => {
     try {
@@ -99,8 +104,7 @@ export default function Cover({ cover, visitor, photos, setFetch }) {
         if (new_post === "ok") {
           setLoading(false);
           setCoverPicture("");
-          setFetch((pre)=> !pre)
-          
+          setFetch((pre) => !pre);
         } else {
           setLoading(false);
 
@@ -119,25 +123,37 @@ export default function Cover({ cover, visitor, photos, setFetch }) {
   };
   return (
     <div className="profile_cover" ref={coverRef}>
-      {coverPicture && (
-        <div className="save_changes_cover">
-          <div className="save_changes_left">
-            <i className="public_icon"></i>
-            Your cover photo is public
+      {skeletonLoading ? (
+        <Skeleton height="100%" containerClassName="avatar-skeleton" />
+      ) : (
+        <>
+        {coverPicture && (
+          <div className="save_changes_cover">
+            <div className="save_changes_left">
+              <i className="public_icon"></i>
+              Your cover photo is public
+            </div>
+            <div className="save_changes_right">
+              <button
+                className="blue_btn opacity_btn"
+                onClick={() => setCoverPicture("")}
+              >
+                Cancel
+              </button>
+              <button
+                className="blue_btn "
+                onClick={() => updateCoverPicture()}
+              >
+                {loading ? (
+                  <PulseLoader color="#fff" size={5} />
+                ) : (
+                  "Save changes"
+                )}
+              </button>
+            </div>
           </div>
-          <div className="save_changes_right">
-            <button
-              className="blue_btn opacity_btn"
-              onClick={() => setCoverPicture("")}
-            >
-              Cancel
-            </button>
-            <button className="blue_btn " onClick={() => updateCoverPicture()}>
-              {loading ? <PulseLoader color="#fff" size={5} /> : "Save changes"}
-            </button>
-          </div>
-        </div>
-      )}
+        )}
+     
       <input
         type="file"
         ref={refInput}
@@ -159,7 +175,7 @@ export default function Cover({ cover, visitor, photos, setFetch }) {
             image={coverPicture}
             crop={crop}
             zoom={zoom}
-            aspect={width/250}
+            aspect={width / 250}
             onCropChange={setCrop}
             onCropComplete={onCropComplete}
             onZoomChange={setZoom}
@@ -178,10 +194,7 @@ export default function Cover({ cover, visitor, photos, setFetch }) {
             onClick={() => setShowCoverMenu((prev) => !prev)}
           >
             <i className="camera_filled_icon"></i>
-            <div className="cover_add_btn_cont">
-
-            Add Cover Photo 
-            </div>
+            <div className="cover_add_btn_cont">Add Cover Photo</div>
           </div>
           {showCoverMneu && (
             <div className="open_cover_menu" ref={menuRef}>
@@ -210,6 +223,8 @@ export default function Cover({ cover, visitor, photos, setFetch }) {
           setShow={setShow}
         />
       )}
+        </>
+       )}
     </div>
   );
 }

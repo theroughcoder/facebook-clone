@@ -16,6 +16,9 @@ import Photos from "./Photos";
 import Friends from "./Friends";
 import Intro from "../../component/intro";
 import { useMediaQuery } from "react-responsive";
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
 export default function Profile({ setVisible }) {
   const { username } = useParams();
   const navigate = useNavigate();
@@ -102,7 +105,8 @@ export default function Profile({ setVisible }) {
     setScrollHeight(window.pageYOffset);
   };
   return (
-    <div className="profile">
+    <div className="profile" >
+
       <Header page="profile" />
       <div className="profile_top" ref={profileTop}>
         <div className="profile_container">
@@ -111,7 +115,8 @@ export default function Profile({ setVisible }) {
             visitor={visitor}
             photos={photos.resources}
             setFetch={setFetch}
-          />
+            loading={loading}
+            />
           
           <ProfielPictureInfos
             profile={profile}
@@ -119,6 +124,7 @@ export default function Profile({ setVisible }) {
             photos={photos.resources}
             othername={othername}
             setFetch={setFetch}
+            loading={loading}
           />
           <ProfileMenu />
         </div>

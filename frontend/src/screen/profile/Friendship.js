@@ -9,8 +9,10 @@ import {
   follow,
   unfollow,
   unfriend,
+  
 } from "../../functions/user";
-export default function Friendship({ friendshipp, profileid }) {
+import Skeleton from "react-loading-skeleton";
+export default function Friendship({ friendshipp, profileid , skeletonLoading}) {
   const [friendship, setFriendship] = useState(friendshipp);
   useEffect(() => {
     setFriendship(friendshipp);
@@ -71,9 +73,14 @@ export default function Friendship({ friendshipp, profileid }) {
 
   return (
     <div className="friendship">
-      
-      {friendship?.friends ? (
-        <div className="friends_menu_wrap">
+          {skeletonLoading ? (
+        <Skeleton height="100%"  containerClassName="avatar-skeleton" />
+      ) : (
+        <div>
+          {friendship?.friends ? (
+            <div className="friends_menu_wrap">
+          
+    
           <button className="gray_btn" onClick={() => setFriendsMenu(true)}>
             <img src="../../../icons/friends.png" alt="" />
             <span>Friends</span>
@@ -114,52 +121,59 @@ export default function Friendship({ friendshipp, profileid }) {
               </div>
             </div>
           )}
-        </div>
-      ) : (
-        !friendship?.requestSent &&
-        !friendship?.requestReceived && (
-          <button className="blue_btn" onClick={() => addFriendHandler()}>
-            <img src="../../../icons/addFriend.png" alt="" className="invert" />
-            <span>Add Friend</span>
-          </button>
-        )
-      )}
-      {friendship?.requestSent ? (
-        <button className="blue_btn" onClick={() => cancelRequestHandler()}>
-          <img
-            src="../../../icons/cancelRequest.png"
-            className="invert"
-            alt=""
-          />
-          <span>Cancel Request</span>
-        </button>
-      ) : (
-        friendship?.requestReceived && (
-          <div className="friends_menu_wrap">
-            <button className="gray_btn" onClick={() => setRespondMenu(true)}>
-              <img src="../../../icons/friends.png" alt="" />
-              <span>Respond</span>
+         
+    
+            </div>
+          ) : (
+            !friendship?.requestSent &&
+            !friendship?.requestReceived && (
+              <button className="blue_btn" onClick={() => addFriendHandler()}>
+                <img src="../../../icons/addFriend.png" alt="" className="invert" />
+                <span>Add Friend</span>
+              </button>
+            )
+          )}
+          {friendship?.requestSent ? (
+            <button className="blue_btn" onClick={() => cancelRequestHandler()}>
+              <img
+                src="../../../icons/cancelRequest.png"
+                className="invert"
+                alt=""
+              />
+              <span>Cancel Request</span>
             </button>
-            {respondMenu && (
-              <div className="open_cover_menu" ref={menu1}>
-                <div
-                  className="open_cover_menu_item hover1"
-                  onClick={() => acceptRequestHanlder()}
-                >
-                  Confirm
-                </div>
-                <div
-                  className="open_cover_menu_item hover1"
-                  onClick={() => deleteRequestHanlder()}
-                >
-                  Delete
-                </div>
+          ) : (
+            friendship?.requestReceived && (
+              <div className="friends_menu_wrap">
+                <button className="gray_btn" onClick={() => setRespondMenu(true)}>
+                  <img src="../../../icons/friends.png" alt="" />
+                  <span>Respond</span>
+                </button>
+                {respondMenu && (
+                  <div className="open_cover_menu" ref={menu1}>
+                    <div
+                      className="open_cover_menu_item hover1"
+                      onClick={() => acceptRequestHanlder()}
+                    >
+                      Confirm
+                    </div>
+                    <div
+                      className="open_cover_menu_item hover1"
+                      onClick={() => deleteRequestHanlder()}
+                    >
+                      Delete
+                    </div>
+                  </div>
+                )}
               </div>
-            )}
-          </div>
-        )
+            )
+          )}
+        </div>
       )}
-        {friendship?.following ? (
+          {skeletonLoading ? (
+        <Skeleton height="100%" containerClassName="avatar-skeleton" />
+      ) : (
+        friendship?.following ? (
           <button className="gray_btn" onClick={() => unfollowHandler()}>
             <img src="../../../icons/follow.png" alt="" />
             <span>Following</span>
@@ -169,7 +183,11 @@ export default function Friendship({ friendshipp, profileid }) {
             <img src="../../../icons/follow.png" className="invert" alt="" />
             <span>Follow</span>
           </button>
-        )}
+        )
+      )}
+          {skeletonLoading ? (
+        <Skeleton height="100%" containerClassName="avatar-skeleton" />
+      ) : (
         <button className={friendship?.friends ? "blue_btn" : "gray_btn"}>
           <img
             src="../../../icons/message.png"
@@ -178,6 +196,7 @@ export default function Friendship({ friendshipp, profileid }) {
           />
           <span>Message</span>
         </button>
+      )}
       </div>
   );
 }

@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Skeleton from "react-loading-skeleton";
 import ProfilePicture from "../../component/profielPicture";
 import Friendship from "./Friendship";
 export default function ProfielPictureInfos({
@@ -6,45 +7,67 @@ export default function ProfielPictureInfos({
   visitor,
   photos,
   othername,
-  setFetch
+  setFetch,
+  loading: skeletonLoading,
 }) {
   const [show, setShow] = useState(false);
   const pRef = useRef(null);
   return (
     <div className="profile_img_wrap">
-      {show && <ProfilePicture setShow={setShow} pRef={pRef} photos={photos} setFetch={setFetch}
+      {show && (
+        <ProfilePicture
+          setShow={setShow}
+          pRef={pRef}
+          photos={photos}
+          setFetch={setFetch}
+        />
+      )}
 
- />}
       <div className="profile_w_left">
         <div className="profile_w_img">
-          <div
-            className="profile_w_bg"
-            ref={pRef}
-            style={{
-              backgroundSize: "cover",
-              backgroundImage: `url(${profile.picture})`,
-            }}
-          ></div>
-          {!visitor && (
-            <div
-              className="profile_circle hover1"
-              onClick={() => setShow(true)}
-            >
-              <i className="camera_filled_icon"></i>
-            </div>
+          {skeletonLoading ? (
+            <Skeleton
+              circle
+              height="180px"
+              width="180px"
+              containerClassName="avatar-skeleton"
+            />
+          ) : (
+            <>
+              <div
+                className="profile_w_bg"
+                ref={pRef}
+                style={{
+                  backgroundSize: "cover",
+                  backgroundImage: `url(${profile.picture})`,
+                }}
+              ></div>
+              {!visitor && (
+                <div
+                  className="profile_circle hover1"
+                  onClick={() => setShow(true)}
+                >
+                  <i className="camera_filled_icon"></i>
+                </div>
+              )}
+            </>
           )}
         </div>
         <div className="profile_w_col">
           <div className="profile_name">
-            {profile.first_name} {profile.last_name}
-            <div className="othername">{othername && `(${othername})`}</div>
+          {skeletonLoading ? <Skeleton height= "100%" /> : <>
+          
+          {profile.first_name} {profile.last_name}
+          <div className="othername">{othername && `(${othername})`}</div>
+          </>
+              }
           </div>
           <div className="profile_friend_count"></div>
           <div className="profile_friend_imgs"></div>
         </div>
       </div>
       {visitor ? (
-        <Friendship friendshipp={profile?.friendship} profileid={profile._id} />
+        <Friendship friendshipp={profile?.friendship} profileid={profile._id} skeletonLoading={skeletonLoading}/>
       ) : (
         <div className="profile_w_right">
           <div className="blue_btn add_to_story_btn">
