@@ -1,6 +1,6 @@
 import "../style/Login.css";
 import LoginForm from "../component/login/LoginForm";
-import Footer from "../component/login/Footer";
+import Footer from "../component/login/footer";
 import RegisterForm from "../component/login/RegisterForm";
 import { useState } from "react";
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik, Form, } from "formik";
 import { Link } from "react-router-dom";
-import LoginInput from "../inputs/LoginInput";
+import LoginInput from "../inputs/loginInput";
 import * as Yup from "yup";
 import axios from "axios";
 import { useReducer, useState } from 'react';
