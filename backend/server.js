@@ -1,14 +1,14 @@
-import express from "express";
-import path from "path"
-import mongoose from "mongoose" 
-import dotenv from "dotenv"                 
-import userRouter from "./router/userRouter.js"
-import postRouter from "./router/postRouter.js"
-import reactRouter from "./router/reactRouter.js"
-import uploadRouter from "./router/uploadRouter.js"
-import listImagesRouter from "./router/listImagesRouter.js"
-import fileUpload from "express-fileupload"
-import cors from 'cors'
+const express = require( "express");
+const path = require( "path")
+const mongoose = require( "mongoose") 
+const dotenv = require( "dotenv")                 
+const userRouter = require( "./router/userRouter.js")
+const postRouter = require( "./router/postRouter.js")
+const reactRouter = require( "./router/reactRouter.js")
+const uploadRouter = require( "./router/uploadRouter.js")
+const listImagesRouter = require( "./router/listImagesRouter.js")
+const fileUpload = require( "express-fileupload")
+const cors = require( 'cors')
 
 // import uploadRouter from "./router/uploadRouter.js" 
 

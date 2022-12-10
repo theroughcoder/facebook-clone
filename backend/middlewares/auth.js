@@ -1,6 +1,6 @@
-import jwt from "jsonwebtoken";
+const jwt = require("jsonwebtoken");
 
-export const authUser = async (req, res, next) => {
+ const authUser = async (req, res, next) => {
   try {
     let tmp = req.header("Authorization");
 
@@ -19,4 +19,5 @@ export const authUser = async (req, res, next) => {
     return res.status(500).json({ message: error.message });
   }
 };
+module.exports = {authUser}
  

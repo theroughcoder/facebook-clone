@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+const mongoose = require( "mongoose");
 
 const { ObjectId } = mongoose.Schema;
 
@@ -18,4 +18,4 @@ const reactSchema = new mongoose.Schema({
   },
 });
 
-export default mongoose.model("React", reactSchema);
+module.exports = mongoose.model("React", reactSchema);

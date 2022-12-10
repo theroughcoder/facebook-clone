@@ -1,5 +1,5 @@
-import fs from "fs";
-export default async function imageUpload  (req, res, next) {
+const fs = require("fs");
+ async function imageUpload  (req, res, next) {
   try {
     if (!req.files || Object.values(req.files).flat().length === 0) {
       return res.status(400).json({ message: "No files selected." });
@@ -31,3 +31,5 @@ const removeTmp = (path) => {
     if (err) throw err;
   });
 };
+
+module.exports = imageUpload;

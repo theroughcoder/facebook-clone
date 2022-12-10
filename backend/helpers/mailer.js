@@ -1,14 +1,14 @@
-import dotenv from "dotenv";
+const dotenv= require("dotenv");
 dotenv.config();
 
-import nodemailer from "nodemailer"
-import {google} from 'googleapis'
+const nodemailer = require("nodemailer")
+const {google} = require('googleapis')
 const {OAuth2} = google.auth; 
 const oauth_link = "https://developers.google.com/oauthplayground"
 const { EMAIL, MAILING_ID, MAILING_SECRET, MAILING_REFRESH } = process.env;
 const auth = new OAuth2(MAILING_ID, MAILING_SECRET,  oauth_link);
 
-export const sendVerificationEmail = (email, name, url) => {
+ const sendVerificationEmail = (email, name, url) => {
     auth.setCredentials({
         refresh_token: MAILING_REFRESH
     })
@@ -37,7 +37,7 @@ export const sendVerificationEmail = (email, name, url) => {
         return res;
     })  
 }
-export const sendResetCode = (email, name, code) => {
+ const sendResetCode = (email, name, code) => {
     auth.setCredentials({
       refresh_token: MAILING_REFRESH,
     });
@@ -64,3 +64,5 @@ export const sendResetCode = (email, name, code) => {
       return res;
     })  
 }
+
+module.exports = {sendVerificationEmail, sendResetCode}

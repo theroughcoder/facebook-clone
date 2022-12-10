@@ -16,7 +16,6 @@
     "start": "nodemon server.js"
   },
   "name": "backend",
-  "type": "module",
   "version": "1.0.0",
   "description": "Facebook clone",
   "main": "server.js",

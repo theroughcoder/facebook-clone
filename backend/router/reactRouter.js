@@ -1,8 +1,8 @@
-import express from "express";
-import React from "../models/reactModel.js";
-import User from "../models/userModel.js";
-import { authUser } from "../middlewares/auth.js";
-import mongoose from "mongoose";
+const express = require( "express");
+const React = require( "../models/reactModel.js");
+const User = require( "../models/userModel.js");
+const { authUser } = require( "../middlewares/auth.js");
+const mongoose = require( "mongoose");
 
 const router = express.Router();
 
@@ -96,4 +96,4 @@ router.get("/getReacts/:id", authUser, async (req, res) => {
     }
   });
 
-export default router;
+  module.exports = router;

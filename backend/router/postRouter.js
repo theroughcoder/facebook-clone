@@ -1,7 +1,7 @@
-import express from "express";
-import Post from "../models/postModel.js";
-import User from "../models/userModel.js";
-import { authUser } from "../middlewares/auth.js";
+const express = require( "express");
+const Post = require( "../models/postModel.js");
+const User = require( "../models/userModel.js");
+const { authUser } = require( "../middlewares/auth.js");
 
 const router = express.Router();
 
@@ -65,7 +65,7 @@ router.put("/savePost/:id", authUser, async (req, res) => {
         },
       });
     }
-    res.json({ status: "ok" });
+    res.json({ status: "ok"})
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -116,5 +116,5 @@ router.put("/comment", authUser, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
 

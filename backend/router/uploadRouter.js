@@ -1,7 +1,8 @@
-import cloudinary from "cloudinary";
-import imageUpload from "../middlewares/imageUpload.js"
-import express from "express";
-import fs from "fs";
+const cloudinary = require( "cloudinary");
+const imageUpload = require( "../middlewares/imageUpload.js")
+const express = require( "express");
+const fs = require( "fs");
+const { route } = require( "./postRouter.js");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
@@ -9,7 +10,7 @@ cloudinary.config({
 });
 const router = express.Router(); 
    
-export default router.post(
+ router.post(
   '/',
   imageUpload,
  async (req, res) => { 
@@ -54,3 +55,4 @@ const removeTmp = (path) => {
     if (err) throw err;
   });
 };
+module.exports = router;

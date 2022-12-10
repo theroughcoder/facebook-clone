@@ -1,22 +1,18 @@
 import express from "express";
-import bcrypt from "bcryptjs";
+const bcrypt = require( "bcryptjs");
 
-import User from "../models/userModel.js";
-import Post from "../models/postModel.js";
-import Code from "../models/codeModel.js";
-import expressAsyncHandler from "express-async-handler";
+const User = require( "../models/userModel.js");
+const Post = require( "../models/postModel.js");
+const Code = require( "../models/codeModel.js");
+const expressAsyncHandler = require( "express-async-handler");
 // import { generateToken, isAdmin, isAuth } from '../utils.js';
-import {
-  validateEmail,
-  validateLength,
-  validateUsername,
-} from "../helpers/validation.js";
-import { generateToken } from "../helpers/tokens.js";
-import { sendResetCode, sendVerificationEmail } from "../helpers/mailer.js";
-import jwt from "jsonwebtoken";
-import {authUser} from "../middlewares/auth.js"
-import generateCode from "../helpers/generateCode.js";
-import mongoose from "mongoose";
+const { validateEmail,  validateLength,  validateUsername} = require("../helpers/validation.js");
+const { generateToken } = require( "../helpers/tokens.js");
+const { sendResetCode, sendVerificationEmail } = require( "../helpers/mailer.js");
+const jwt = require( "jsonwebtoken");
+const {authUser} = require( "../middlewares/auth.js")
+const generateCode = require( "../helpers/generateCode.js");
+const mongoose = require( "mongoose");
 
 
 const router = express.Router();
@@ -635,5 +631,5 @@ router.get("/getFriendsPageInfos", authUser, async (req, res) => {
   }
 });
 
-export default router;
+module.exports = router;
  

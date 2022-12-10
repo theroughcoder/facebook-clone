@@ -9,4 +9,4 @@ function generateCode(length) {
   return code;
 }
 
-export default generateCode;
+module.exports = generateCode;
