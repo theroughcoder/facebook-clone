@@ -1,4 +1,4 @@
-import express from "express";
+const express = require ("express");
 const bcrypt = require( "bcryptjs");
 
 const User = require( "../models/userModel.js");
@@ -13,7 +13,7 @@ const jwt = require( "jsonwebtoken");
 const {authUser} = require( "../middlewares/auth.js")
 const generateCode = require( "../helpers/generateCode.js");
 const mongoose = require( "mongoose");
-
+ 
 
 const router = express.Router();
 

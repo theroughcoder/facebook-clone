@@ -7,7 +7,7 @@ const postRouter = require( "./router/postRouter.js")
 const reactRouter = require( "./router/reactRouter.js")
 const uploadRouter = require( "./router/uploadRouter.js")
 const listImagesRouter = require( "./router/listImagesRouter.js")
-const fileUpload = require( "express-fileupload")
+const fileUpload = require("express-fileupload")
 const cors = require( 'cors')
 
 // import uploadRouter from "./router/uploadRouter.js" 
@@ -59,4 +59,4 @@ const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server is running at port ${port}`);
 });  
-                
+                 
