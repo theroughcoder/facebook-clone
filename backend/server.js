@@ -12,7 +12,7 @@ const cors = require( 'cors')
 
 // import uploadRouter from "./router/uploadRouter.js" 
 
-let allowed = [ 'https://facebookclone-tawny.vercel.app', 'http://localhost:3000','http://postman.com', 'some other link'];
+let allowed = [ 'https://facebookclone-psi.vercel.app/', 'http://localhost:3000','http://postman.com', 'some other link'];
 function options(req, res){
     let temp;
     let origin = req.header('origin');
@@ -37,7 +37,7 @@ mongoose.connect(process.env.MONGODB_URL).then(()=> {console.log("Connect to DB"
 ).catch(err => console.log(err.message))
 
 const app = express();
-// app.use(cors(options))
+app.use(cors(options))
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 app.use(fileUpload({
