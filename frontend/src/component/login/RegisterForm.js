@@ -61,7 +61,7 @@ export default function RegisterForm({setVisible}) {
     const registerSubmit = async (values) => {
         dispatchLoc({ type: "FETCH_REQUEST" });
         try {
-            const { data } = await axios.post("/api/users/register",
+            const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/register`,
                 {
                     first_name: values.first_name,
                     last_name: values.last_name,

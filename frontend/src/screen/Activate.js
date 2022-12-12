@@ -44,7 +44,7 @@ console.log(token)
     try {
       dispatchLoc({type: "ACTIVATE_REQUEST"}) 
       const { data } = await axios.post(
-        '/api/users/activate',
+        `${process.env.REACT_APP_BACKEND_URL}/api/users/activate`,
         { token },
         {
           headers: {

@@ -51,7 +51,7 @@ export default function Profile({ setVisible }) {
       dispatch({
         type: "PROFILE_REQUEST",
       });
-      const { data } = await axios.get(`/api/users/getProfile/${userName}`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/users/getProfile/${userName}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -61,7 +61,7 @@ export default function Profile({ setVisible }) {
       } else {
         try {
           const images = await axios.post(
-            `/api/listImages`,
+            `${process.env.REACT_APP_BACKEND_URL}/api/listImages`,
             { path, sort, max },
             {
               headers: {

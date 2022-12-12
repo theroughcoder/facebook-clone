@@ -44,7 +44,7 @@ export default function LoginForm({ setVisible }) {
   const loginSubmit = async (values) => {
     dispatchLoc({ type: "FETCH_REQUEST" });
     try {
-      const { data } = await axios.post("/api/users/login",
+      const { data } = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/users/login`,
         {
           email: values.email,
           password: values.password,

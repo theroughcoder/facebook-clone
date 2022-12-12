@@ -36,7 +36,7 @@ function HomeScreen({visiblePostPopup, setVisiblePostPopup}) {
         type: "POSTS_REQUEST",
       });
       const { data } = await axios.get(
-        `/api/posts/getPosts`,
+        `${process.env.REACT_APP_BACKEND_URL}/api/posts/getPosts`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,

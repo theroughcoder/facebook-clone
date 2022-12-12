@@ -9,7 +9,7 @@ export const createPost = async (
 ) => {
   try {
     const { data } = await axios.post(
-      `/api/posts/createPost`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/posts/createPost`,
       {
         type,
         background,
@@ -31,7 +31,7 @@ export const createPost = async (
 export const reactPost = async (postId, react, token) => {
   try {
     const { data } = await axios.put(
-      `/api/reacts/reactPost`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/reacts/reactPost`,
       {
         postId,
         react,
@@ -50,7 +50,7 @@ export const reactPost = async (postId, react, token) => {
 export const getReacts = async (postId, token) => {
   try {
     const { data } = await axios.get(
-      `/api/reacts/getReacts/${postId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/reacts/getReacts/${postId}`,
 
       {
         headers: {
@@ -66,7 +66,7 @@ export const getReacts = async (postId, token) => {
 export const comment = async (postId, comment, image, token) => {
   try {
     const { data } = await axios.put(
-      `/api/posts/comment`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/posts/comment`,
       {
         postId,
         comment,
@@ -87,7 +87,7 @@ export const comment = async (postId, comment, image, token) => {
 export const savePost = async (postId, token) => {
   try {
     const { data } = await axios.put(
-      `/api/posts/savePost/${postId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/posts/savePost/${postId}`,
       {},
 
       {
@@ -104,7 +104,7 @@ export const savePost = async (postId, token) => {
 export const deletePost = async (postId, token) => {
   try {
     const { data } = await axios.delete(
-      `/api/posts/deletePost/${postId}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/posts/deletePost/${postId}`,
 
       {
         headers: {

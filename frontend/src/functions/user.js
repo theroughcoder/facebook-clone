@@ -2,7 +2,7 @@ import axios from "axios";
 export const updateprofilePicture = async (url, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/updateProfilePicture`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/updateProfilePicture`,
       {
         url,
       },
@@ -20,7 +20,7 @@ export const updateprofilePicture = async (url, token) => {
 export const updateCover = async (url, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/updateCover`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/updateCover`,
       {
         url,
       },
@@ -38,7 +38,7 @@ export const updateCover = async (url, token) => {
 export const addFriend = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/addFriend/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/addFriend/${id}`,
       {},
 
       {
@@ -55,7 +55,7 @@ export const addFriend = async (id, token) => {
 export const cancelRequest = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/cancelRequest/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/cancelRequest/${id}`,
       {},
 
       {
@@ -72,7 +72,7 @@ export const cancelRequest = async (id, token) => {
 export const follow = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/follow/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/follow/${id}`,
       {},
 
       {
@@ -91,7 +91,7 @@ export const follow = async (id, token) => {
 export const unfollow = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/unfollow/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/unfollow/${id}`,
       {},
 
       {
@@ -108,7 +108,7 @@ export const unfollow = async (id, token) => {
 export const acceptRequest = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/acceptRequest/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/acceptRequest/${id}`,
       {},
 
       {
@@ -125,7 +125,7 @@ export const acceptRequest = async (id, token) => {
 export const unfriend = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/unfriend/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/unfriend/${id}`,
       {},
 
       {
@@ -142,7 +142,7 @@ export const unfriend = async (id, token) => {
 export const deleteRequest = async (id, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/deleteRequest/${id}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/deleteRequest/${id}`,
       {},
 
       {
@@ -159,7 +159,7 @@ export const deleteRequest = async (id, token) => {
 export const search = async (searchTerm, token) => {
   try {
     const { data } = await axios.post( 
-      `/api/users/search/${searchTerm}`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/search/${searchTerm}`,
       {},
 
       {
@@ -176,7 +176,7 @@ export const search = async (searchTerm, token) => {
 export const getUsers = async (token) => {
   try {
     const { data } = await axios.get( 
-      `/api/users/getAllUsers`
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/getAllUsers`
     );
     return data;
   } catch (error) {
@@ -186,7 +186,7 @@ export const getUsers = async (token) => {
 export const addToSearchHistory = async (searchUser, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/addToSearchHistory`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/addToSearchHistory`,
       { searchUser },
 
       {
@@ -203,7 +203,7 @@ export const addToSearchHistory = async (searchUser, token) => {
 export const getSearchHistory = async (token) => {
   try {
     const { data } = await axios.get(
-      `/api/users/getSearchHistory`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/getSearchHistory`,
 
       {
         headers: {
@@ -219,7 +219,7 @@ export const getSearchHistory = async (token) => {
 export const removeFromSearch = async (searchUser, token) => {
   try {
     const { data } = await axios.put(
-      `/api/users/removeFromSearch`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/removeFromSearch`,
       { searchUser },
 
       {
@@ -236,7 +236,7 @@ export const removeFromSearch = async (searchUser, token) => {
 export const getFriendsPageInfos = async (token) => {
   try {
     const { data } = await axios.get(
-      `/api/users/getFriendsPageInfos`,
+      `${process.env.REACT_APP_BACKEND_URL}/api/users/getFriendsPageInfos`,
 
       {
         headers: {
