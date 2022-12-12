@@ -12,7 +12,7 @@ const cors = require( 'cors')
 
 // import uploadRouter from "./router/uploadRouter.js" 
 
-let allowed = [ 'https://facebookclone-tawny.vercel.app','http://localhost:3000','http://postman.com', 'some other link'];
+let allowed = [ 'https://facebookclone-tawny.vercel.app', 'http://localhost:3000','http://postman.com', 'some other link'];
 function options(req, res){
     let temp;
     let origin = req.header('origin');
