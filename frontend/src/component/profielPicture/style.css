@@ -173,6 +173,12 @@ margin-bottom: 4px;
   .postBox.pictureBox {
     width: 98% !important;
   }
+  .update_img {
+    width: 100% !important;
+
+
+  
+  }
 }
 @media (max-width: 589px) {
   .postBox .old_pictures {
