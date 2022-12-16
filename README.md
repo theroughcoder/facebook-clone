@@ -2,20 +2,20 @@
 
 ## Overview
 
-It is a project that is built with the help of react for frontend, node js with express framework for backend and mongodb as a database. Which also means it is a Mern project. This project has used redux for storing the variable globally. Plus cloudinary is used for storing images online. Some of the famous libraries have been used in the project for enhancing the needy and advance functionalities like Axios, formik, react-loading-skeleton etc.  
+It is a project that is built with the help of react for frontend, node js with express framework for backend and mongodb as a database, which also means it is a MERN stack project. This project has used redux for storing the variable globally. Plus cloudinary is used for storing images online. Some famous libraries have been used in the project for enhancing the needy and advance functionalities like Axios, formik, react-loading-skeleton etc.
 
 ## Features
 
 * User friendly UI
 * Upload corp images
-* Send\cancel\accept friend request 
+* Send\cancel\accept friend request
 * Follow\unfollow friend
 * Explore home feed
 * Multi way posting
 * Search Friend
 * skeleton loading effect
 * Loader
-* Reducer for perfect cordination
+* Reducer for perfect coordination
 * Redux
 
 ## Tools
