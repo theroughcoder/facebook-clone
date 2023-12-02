@@ -73,6 +73,12 @@ export default function LoginForm({ setVisible }) {
         <p>
           Facebook helps you connect and share with the people in your life.
         </p>
+          <h5>
+          Email: (sanchit2000sp1@gmail.com)
+        </h5>
+      <h6>
+          Password: (sanchit)
+        </h6>
       </div>
 
       <div className="login_2">
