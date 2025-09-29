@@ -4,7 +4,7 @@
 
 It is a project that is built with the help of react for frontend, node js with express framework for backend and mongodb as a database, which also means it is a MERN stack project. This project has used redux for storing the variable globally. Plus cloudinary is used for storing images online. Some famous libraries have been used in the project for enhancing the needy and advance functionalities like Axios, formik, react-loading-skeleton etc.
 
-# [Click here to see live](https://section9.d3r8iuicn1h83t.amplifyapp.com)
+# [Click here to see live](https://faceclone-nu.vercel.app)
 
 ## Features
 
